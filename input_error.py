@@ -1,4 +1,12 @@
-from errors import NotValidPhoneNumber, NotValidDate, NameIsString, NoBirthday, NoContacts, NoBirthdays
+from errors import (
+    NotValidPhoneNumber,
+    NotValidDate,
+    NameIsString,
+    NoBirthday,
+    NoContacts,
+    NoBirthdays,
+    EmailNotCorrect
+)
 
 def input_error(func):
     def inner(*args, **kwargs):
@@ -23,6 +31,8 @@ def input_error(func):
             return "No contacts in phonebook."
         except NoBirthdays:
             return "No birthdays in the next 7 days."
+        except EmailNotCorrect:
+            return "Email not correct."
         except:
             return "Something went wrong."
     return inner

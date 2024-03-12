@@ -1,11 +1,15 @@
 from models.Name import Name
 from models.Phone import Phone
 from models.Birthday import Birthday
+from models.email import Email
+from models.address import Address
 
 class Record:
-    def __init__(self, name):
+    def __init__(self, name, email=None, address=None):
         self.name = Name(name)
         self.phones = []
+        self.email = Email(email) if email else None
+        self.address = address
 
     def find_idx(self, phone):
         for i in range(len(self.phones)):
@@ -27,9 +31,15 @@ class Record:
     def find_phone(self, phone):
         idx = self.find_idx(phone)
         return self.phones[idx]
-    
+
     def add_birthday(self, birthday):
         self.birthday = Birthday(birthday)
-        
+
+    def add_email(self, email):
+        self.email = Email(email)
+
+    def add_address(self, *args):
+        self.address = Address(*args)
+
     def __str__(self):
         return f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}{', birthday: ' + self.birthday.value.strftime('%d %B, %Y') if hasattr(self, 'birthday') else ''}"
