@@ -5,7 +5,7 @@ from input_handlers.add_contact import add_contact
 from input_handlers.change_contact import change_contact
 from input_handlers.remove_contact import remove_contact
 from input_handlers.show_contact import show_contact
-from input_handlers.all import all
+from input_handlers.all_contacts import all_contacts
 from input_handlers.birthdays import birthdays
 from input_handlers.add_birthday import add_birthday
 from input_handlers.show_birthday import show_birthday
@@ -41,7 +41,7 @@ def main():
         elif command == "phone":
             print(show_contact(args, contacts))
         elif command == "all":
-            print(all(contacts))
+            print(all_contacts(contacts))
         elif command == "birthdays":
             print(birthdays(contacts))
         elif command == "add-birthday":
