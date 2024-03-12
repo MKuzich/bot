@@ -9,7 +9,6 @@ def add_contact(args, contacts):
         raise NotValidPhoneNumber
     if not name.isalpha():
         raise NameIsString
-    
     record = Record(name)
     record.add_phone(phone)
     contacts.add_record(record)
