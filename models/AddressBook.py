@@ -1,0 +1,43 @@
+from collections import UserDict, defaultdict
+from datetime import datetime
+
+class AddressBook(UserDict):
+    def add_record(self, record):
+        self.data[record.name.value] = record
+    
+    def find(self, name):
+        contact = self.data.get(name)
+        if not contact:
+            raise KeyError
+        return contact
+
+    def delete(self, name):
+        contact = self.data.pop(name, None)
+        if not contact:
+            raise KeyError
+    
+    def get_birthdays_per_week(self):
+        today = datetime.now().date()
+        birthdays = defaultdict(list)
+        users = [{"name": user.name.value, "birthday": user.birthday.value} for user in self.data.values() if hasattr(user, 'birthday')]
+        def sort_by_date(user):
+            return user['birthday'].date()
+        users.sort(key=sort_by_date)
+        
+        for user in users:
+            name = user['name']
+            birthday = user['birthday'].date()
+            birthday_this_year = birthday.replace(year=today.year)
+
+            if birthday_this_year < today:
+                birthday_this_year = birthday_this_year.replace(year=today.year + 1)
+            
+            delta_days = (birthday_this_year - today).days
+
+            if delta_days < 7:
+                if birthday_this_year.weekday() > 4: 
+                    if today.weekday() != 0 and today.weekday() < 5:
+                        birthdays['Monday'].append(name)
+                else:
+                    birthdays[birthday_this_year.strftime('%A')].append(name)
+        return birthdays
