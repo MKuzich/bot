@@ -20,16 +20,16 @@ class EmailNotCorrect(Exception):
     """Email not passed reqular expression"""
 
 class BuildingNumberNotCorrect(Exception):
-    """Email not passed reqular expression"""
+    """Buliding number not passed reqular expression"""
 
 class StreetNotString(Exception):
-    """Email not passed reqular expression"""
+    """Street not passed reqular expression"""
 
 class CityNotString(Exception):
-    """Email not passed reqular expression"""
+    """City code not passed reqular expression"""
 
 class PostalCodeNotCorrect(Exception):
-    """Email not passed reqular expression"""
+    """Postal code not passed reqular expression"""
 
 class CountryCodeNotCorrect(Exception):
     """Given country code not correct"""
