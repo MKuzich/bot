@@ -17,7 +17,7 @@ from input_handlers.delete_note import delete_note
 from input_handlers.show_note import show_note
 from models.notes_manager import NotesManager
 from models.note import Note
-
+from input_handlers.search_note import search_note
 
 def parse_input(user_input):
     cmd, *args = user_input.split()
@@ -74,7 +74,9 @@ def main():
         elif command == "show-note":
             print(show_note(args, notes_manager))
         elif command == "show-all-notes":
-            notes_manager.display_notes()
+            notes_manager.display_notes()     
+        elif command == "search-note":
+            print(search_note(args, notes_manager))
         else:
             print("Invalid command.")
 

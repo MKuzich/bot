@@ -33,3 +33,6 @@ class PostalCodeNotCorrect(Exception):
 
 class CountryCodeNotCorrect(Exception):
     """Given country code not correct"""
+
+class NoteSearchError(Exception):
+    "No notes found with that word"
