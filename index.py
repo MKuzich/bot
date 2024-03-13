@@ -8,6 +8,9 @@ from input_handlers.all_contacts import all_contacts
 from input_handlers.birthdays import birthdays
 from input_handlers.add_birthday import add_birthday
 from input_handlers.show_birthday import show_birthday
+from input_handlers.add_email import add_email
+from input_handlers.add_address import add_address
+from input_handlers.show_address import show_address
 from input_handlers.add_note import add_note
 from input_handlers.edit_note import edit_note
 from input_handlers.delete_note import delete_note
@@ -27,7 +30,7 @@ def main():
     notes_manager = NotesManager()
     try:
         contacts = load_data()
-    except:
+    except FileNotFoundError: # move to handlers errors
         pass
     print("Welcome to the assistant bot!")
     while True:
@@ -56,6 +59,12 @@ def main():
             print(add_birthday(args, contacts))
         elif command == "show-birthday":
             print(show_birthday(args, contacts))
+        elif command == "add-email":
+            print(add_email(args, contacts))
+        elif command == "add-address":
+            print(add_address(args, contacts))
+        elif command == "show-address":
+            print(show_address(args, contacts))
         elif command == "add-note":
             print(add_note(notes_manager))
         elif command == "edit-note":

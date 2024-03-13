@@ -15,3 +15,21 @@ class NoBirthdays(Exception):
 
 class NoBirthday(KeyError):
     pass
+
+class EmailNotCorrect(Exception):
+    """Email not passed reqular expression"""
+
+class BuildingNumberNotCorrect(Exception):
+    """Email not passed reqular expression"""
+
+class StreetNotString(Exception):
+    """Email not passed reqular expression"""
+
+class CityNotString(Exception):
+    """Email not passed reqular expression"""
+
+class PostalCodeNotCorrect(Exception):
+    """Email not passed reqular expression"""
+
+class CountryCodeNotCorrect(Exception):
+    """Given country code not correct"""
