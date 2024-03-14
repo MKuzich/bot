@@ -1,6 +1,6 @@
 """File for Email class"""
 import re
-from models.Field import Field
+from models.field import Field
 from errors import EmailNotCorrect
 from constants import EMAIL_PATTERN
 

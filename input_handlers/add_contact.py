@@ -1,5 +1,5 @@
 from input_error import input_error
-from models.Record import Record
+from models import Record
 from errors import NotValidPhoneNumber, NameIsString
 
 @input_error

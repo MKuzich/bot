@@ -1,25 +1,10 @@
 from data_handlers import save_data, load_data
-from input_handlers.search_contact import search_contact
-from models.AddressBook import AddressBook
-from input_handlers.add_contact import add_contact
-from input_handlers.change_contact import change_contact
-from input_handlers.remove_contact import remove_contact
-from input_handlers.show_contact import show_contact
-from input_handlers.all_contacts import all_contacts
-from input_handlers.birthdays import birthdays
-from input_handlers.add_birthday import add_birthday
-from input_handlers.show_birthday import show_birthday
-from input_handlers.add_email import add_email
-from input_handlers.add_address import add_address
-from input_handlers.show_address import show_address
-from input_handlers.add_note import add_note
-from input_handlers.edit_note import edit_note
-from input_handlers.delete_note import delete_note
-from input_handlers.show_note import show_note
-from models.notes_manager import NotesManager
-from models.note import Note
-from input_handlers.search_note import search_note
-from input_handlers.sort_notes_by_tag import sort_notes_by_tag
+from models import (AddressBook, NotesManager)
+from input_handlers import (
+    add_contact, change_contact, remove_contact, show_contact, all_contacts,
+    birthdays, add_birthday, show_birthday, add_email, add_address, show_address,
+    add_note, edit_note, delete_note, show_note, search_note, sort_notes_by_tag
+)
 
 def parse_input(user_input):
     cmd, *args = user_input.split()

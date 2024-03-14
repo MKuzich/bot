@@ -1,4 +1,4 @@
-from models.Field import Field
+from models.field import Field
 from errors import NotValidPhoneNumber
 
 class Phone(Field):
