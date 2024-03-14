@@ -1,5 +1,5 @@
 from input_error import input_error
-from models.note import Note
+from models import Note
 
 
 @input_error

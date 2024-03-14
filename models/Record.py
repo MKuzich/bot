@@ -1,8 +1,4 @@
-from models.Name import Name
-from models.Phone import Phone
-from models.Birthday import Birthday
-from models.email import Email
-from models.address import Address
+from models import Name, Phone, Birthday, Email, Address
 
 class Record:
     def __init__(self, name, email=None, address=None):

@@ -1,6 +1,6 @@
 """File for Address class"""
 import re
-from models.Field import Field
+from models.field import Field
 from errors import (
     BuildingNumberNotCorrect,
     StreetNotString,
