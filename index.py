@@ -18,6 +18,7 @@ from input_handlers.show_note import show_note
 from models.notes_manager import NotesManager
 from models.note import Note
 from input_handlers.search_note import search_note
+from input_handlers.sort_notes_by_tag import sort_notes_by_tag
 
 def parse_input(user_input):
     cmd, *args = user_input.split()
@@ -77,6 +78,8 @@ def main():
             notes_manager.display_notes()     
         elif command == "search-note":
             print(search_note(args, notes_manager))
+        elif command == "sort-notes":
+            print(sort_notes_by_tag(args, notes_manager))
         else:
             print("Invalid command.")
 
