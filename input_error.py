@@ -5,7 +5,10 @@ from errors import (
     NoBirthday,
     NoContacts,
     NoBirthdays,
-    EmailNotCorrect
+    EmailNotCorrect,
+    BuildingNumberNotCorrect,
+    PostalCodeNotCorrect,
+    CountryCodeNotCorrect
 )
 
 def input_error(func):
@@ -33,6 +36,12 @@ def input_error(func):
             return "No birthdays in the next 7 days."
         except EmailNotCorrect:
             return "Email not correct."
+        except BuildingNumberNotCorrect:
+            return "Building number not correct."
+        except PostalCodeNotCorrect:
+            return "PostalCode not core=rect for this country"
+        except CountryCodeNotCorrect:
+            return "Inputed country code not correct or counry not found."
         except Exception as e:
             return f"An error occurred: {e}"
     return inner

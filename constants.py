@@ -1,7 +1,7 @@
 """File with default configurations"""
 
 EMAIL_PATTERN = r"^\S+@\S+\.\S+$"
-BULDING_PATTER = r"^\d+(?:[\\/]?\d+[A-Za-z]*)?$"
+BULDING_PATTERN = r"^\d+(?:[\\/]?\d+[A-Za-z]*)?$"
 GB_POSTAL_CODE = r"(GIR[ ]?0AA|((AB|AL|B|BA|BB|BD|BH|BL|BN|BR|BS|BT|CA|CB|CF|CH|CM|CO|CR|CT|CV|"
 GB_POSTAL_CODE += r"CW|DA|DD|DE|DG|DH|DL|DN|DT|DY|E|EC|EH|EN|EX|FK|FY|G|GL|GY|GU|HA|HD|HG|HP|HR|"
 GB_POSTAL_CODE += r"HS|HU|HX|IG|IM|IP|IV|JE|KA|KT|KW|KY|L|LA|LD|LE|LL|LN|LS|LU|M|ME|MK|ML|N|NE|"
