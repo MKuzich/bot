@@ -1,4 +1,5 @@
 from data_handlers import save_data, load_data
+from input_handlers.search_contact import search_contact
 from models.AddressBook import AddressBook
 from input_handlers.add_contact import add_contact
 from input_handlers.change_contact import change_contact
@@ -75,6 +76,8 @@ def main():
             print(show_note(args, notes_manager))
         elif command == "show-all-notes":
             notes_manager.display_notes()
+        elif command == "search-contact":
+            print(search_contact(args, contacts))
         else:
             print("Invalid command.")
 

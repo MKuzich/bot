@@ -7,12 +7,25 @@ class AddressBook(UserDict):
 
     def add_record(self, record):
         self.data[record.name.value] = record
-    
+
     def find(self, name):
         contact = self.data.get(name)
         if not contact:
             raise KeyError
         return contact
+
+    def search_by_any(self, search_value):
+        contacts = []
+        for user in self.data.values():
+            if search_value in user.name.value:
+                contacts.append(user)
+            elif user.email and search_value in user.email.value:
+                contacts.append(user)
+            elif any(search_value in phone.value for phone in user.phones):
+                contacts.append(user)
+            elif hasattr(user, 'birthday') and user.birthday and search_value in user.birthday.value.strftime('%d %B, %Y'):
+                contacts.append(user)
+        return contacts
 
     def delete(self, name):
         contact = self.data.pop(name, None)
