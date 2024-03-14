@@ -2,6 +2,7 @@ from input_error import input_error
 from models.note import Note
 
 
+@input_error
 def add_note(notes_manager):
     title = input("Enter the title of the note: ")
     description = input("Enter the description of the note: ")
