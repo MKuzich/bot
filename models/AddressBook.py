@@ -68,7 +68,7 @@ class AddressBook(UserDict):
             if hasattr(user, 'birthday'):
                 name = user.name.value
                 phones = '; '.join(p.value for p in user.phones)
-                email = user.email.value
+                email = user.email
                 birthday = user.birthday.value.date()
                 birthday_this_year = birthday.replace(year=today.year)
 
