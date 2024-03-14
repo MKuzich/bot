@@ -8,7 +8,7 @@ class Note:
         self.description = description
         self.date = datetime.datetime.now()
         self.note_id = self.generate_id()
-        self.tag = tag
+        self.tag = tag if tag is not None else []
 
     id_counter = 1
 
