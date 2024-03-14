@@ -1,4 +1,5 @@
 from data_handlers import save_data, load_data
+from input_handlers.search_contact import search_contact
 from models.AddressBook import AddressBook
 from input_handlers.add_contact import add_contact
 from input_handlers.change_contact import change_contact
@@ -55,7 +56,7 @@ def main():
         elif command == "all":
             print(all_contacts(contacts))
         elif command == "birthdays":
-            print(birthdays(contacts))
+            print(birthdays(args, contacts))
         elif command == "add-birthday":
             print(add_birthday(args, contacts))
         elif command == "show-birthday":
@@ -75,6 +76,9 @@ def main():
         elif command == "show-note":
             print(show_note(args, notes_manager))
         elif command == "show-all-notes":
+            notes_manager.display_notes()
+        elif command == "search-contact":
+            print(search_contact(args, contacts))
             notes_manager.display_notes()     
         elif command == "search-note":
             print(search_note(args, notes_manager))
