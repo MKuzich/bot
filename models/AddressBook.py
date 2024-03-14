@@ -1,5 +1,5 @@
 from collections import UserDict, defaultdict
-from datetime import datetime
+from datetime import datetime, timedelta
 
 class AddressBook(UserDict):
     def __init__(self):
@@ -45,17 +45,11 @@ class AddressBook(UserDict):
                     birthdays[birthday_this_year.strftime('%A')].append(name)
         return birthdays
 
-    def get_upcoming_birthdays(self):
+    def get_upcoming_birthdays(self, days):
         today = datetime.now().date()
-        end_of_year = datetime(today.year, 12, 31).date()
+        #end_of_year = datetime(today.year, 12, 31).date()
+        target_date = today + timedelta(days=int(days))
         birthdays = defaultdict(list)
-        
-        users = [
-            {
-                "name": user.name.value,
-                "birthday": user.birthday.value
-            } for user in self.data.values() if hasattr(user, 'birthday')
-        ]
 
         for user in self.data.values():
             if hasattr(user, 'birthday'):
@@ -68,7 +62,7 @@ class AddressBook(UserDict):
                 if birthday_this_year < today:
                     birthday_this_year = birthday_this_year.replace(year=today.year + 1)
 
-                if today <= birthday_this_year <= end_of_year:
+                if today <= birthday_this_year <= target_date:
                     day_of_week = birthday_this_year.strftime('(%A)')
                     formatted_date = birthday_this_year.strftime('%d %B, %Y')
                     birthdays[formatted_date].append((day_of_week, name, phones, email))

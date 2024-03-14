@@ -54,7 +54,7 @@ def main():
         elif command == "all":
             print(all_contacts(contacts))
         elif command == "birthdays":
-            print(birthdays(contacts))
+            print(birthdays(args, contacts))
         elif command == "add-birthday":
             print(add_birthday(args, contacts))
         elif command == "show-birthday":

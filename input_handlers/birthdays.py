@@ -4,8 +4,9 @@ from input_error import input_error
 from errors import NoBirthdays
 
 @input_error
-def birthdays(contacts):
-    birthdays_contact = contacts.get_upcoming_birthdays()
+def birthdays(args, contacts):
+    days = args[0]
+    birthdays_contact = contacts.get_upcoming_birthdays(days)
 
     # Підготовка даних для виведення
     data_for_table = []
