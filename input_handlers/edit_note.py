@@ -19,10 +19,11 @@ def edit_note(args, notes_manager):
                 if description:
                     note.description = description
 
-                tag = input(
-                    f"Current tag: {note.tag}\nEnter the new tag for the note (or press Enter to keep the current tag): "
+                tag_input = input(
+                    f"Current tag(s): {', '.join(note.tag)}\nEnter the new tag(s) for the note separated by comma (or press Enter to keep the current tag(s)): "
                 )
-                if tag:
+                if tag_input:
+                    tag = [tag.strip() for tag in tag_input.split(",")]
                     note.tag = tag
 
                 return print("Note edited successfully!")

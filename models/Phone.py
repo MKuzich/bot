@@ -3,6 +3,7 @@ from errors import NotValidPhoneNumber
 
 class Phone(Field):
     def __init__(self, value):
-        if not value.isdigit() or len(value) != 10:
+        if (len(value) < 10 or len(value) > 12) or not value.isdigit():
             raise NotValidPhoneNumber
-        self.value = value
+        super().__init__(value)
+        

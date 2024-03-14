@@ -17,7 +17,7 @@ def input_error(func):
             return func(*args, **kwargs)
         
         except NotValidPhoneNumber:
-            return "Phone number should contain only 10 digits."
+            return "Phone number should contain 10 or 12 digits."
         except NotValidDate:
             return "Date should be in format DD.MM.YYYY."
         except NameIsString:
@@ -42,6 +42,6 @@ def input_error(func):
             return "PostalCode not core=rect for this country"
         except CountryCodeNotCorrect:
             return "Inputed country code not correct or counry not found."
-        #except: # Uncomment in production
-        #    return "Something went wrong."
+        except Exception as e:
+            return f"An error occurred: {e}"
     return inner
