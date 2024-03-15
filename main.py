@@ -28,7 +28,7 @@ from input_handlers import (
 )
 from helpers.ui import style, get_bottom_toolbar
 from helpers.session import get_completer, bot_history
-from constants import NONE_COMMANDS, HELP_TEXT, HI_TEXT
+from constants import NONE_COMMANDS, HELP_TEXT, HI_TEXT, PROMT
 
 
 def parse_input(user_input):
@@ -73,7 +73,7 @@ def main():
     while True:
         try:
             user_input = session.prompt(
-                ">>> ", bottom_toolbar=get_toolbar, refresh_interval=0.5
+                PROMT, bottom_toolbar=get_toolbar, refresh_interval=0.5
             )
         except KeyboardInterrupt:
             # pressed ctrl+C

@@ -196,3 +196,6 @@ HI_TEXT = HTML("<strong>How can I help you?</strong> I can do this: \n" +\
                '<ansigreen>Add contacts</ansigreen> \n' +\
                '<ansired>Delete contacts</ansired>'
                )
+PROMT = HTML(
+    '<style fg="#00aa00">>>> </style>'
+)
