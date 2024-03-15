@@ -5,6 +5,7 @@ from errors import (
     NoBirthday,
     NoContacts,
     NoBirthdays,
+    LimitSearchBirthdays,
     EmailNotCorrect,
     BuildingNumberNotCorrect,
     PostalCodeNotCorrect,
@@ -33,10 +34,12 @@ def input_error(func):
             return "Phone not found."
         except KeyError:
             return "Contact not found."
-        except NoContacts: 
+        except NoContacts:
             return "No contacts in phonebook."
         except NoBirthdays:
-            return "No birthdays in the next 7 days."
+            return "There are no birthdays in the specified period."
+        except LimitSearchBirthdays:
+            return "Enter a date less than 365 days"
         except EmailNotCorrect:
             return "Email not correct."
         except BuildingNumberNotCorrect:

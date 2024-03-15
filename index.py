@@ -24,6 +24,7 @@ from input_handlers import (
     show_note,
     search_note,
     sort_notes_by_tag,
+    search_contact
 )
 from helpers.ui import style, get_bottom_toolbar
 from helpers.session import get_completer, bot_history
@@ -121,7 +122,6 @@ def main():
             notes_manager.display_notes()
         elif command == "search-contact":
             print(search_contact(args, contacts))
-            notes_manager.display_notes()
         elif command == "search-note":
             print(search_note(args, notes_manager))
         elif command == "sort-notes":
