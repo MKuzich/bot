@@ -79,7 +79,7 @@ class AddressBook(UserDict):
     def get_upcoming_birthdays(self, days):
         today = datetime.now().date()
         #end_of_year = datetime(today.year, 12, 31).date()
-        target_date = today + timedelta(days=int(days))
+        target_date = today + timedelta(days=days)
         birthdays = defaultdict(list)
 
         for user in self.data.values():
