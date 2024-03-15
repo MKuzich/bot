@@ -109,7 +109,7 @@ def main():
         elif command == "show-address":
             print(show_address(args, contacts))
         elif command == "add-note":
-            print(add_note(notes_manager))
+            print(add_note(args, notes_manager))
         elif command == "add-tag":
             print(add_tag(args, notes_manager))
         elif command == "edit-note":
