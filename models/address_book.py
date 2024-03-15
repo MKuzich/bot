@@ -16,22 +16,40 @@ class AddressBook(UserDict):
 
     def search_by_any(self, search_value):
         contacts = []
+        search_value = search_value.lower()
         for user in self.data.values():
-            if search_value in user.name.value:
+            birthday_str_formats = self.birthdayStrFormats(user)
+            address_str = str(user.address).lower() if hasattr(user, 'address') and user.address else ""
+            if search_value in address_str:
                 contacts.append(user)
-            elif user.email and search_value in user.email.value:
+            elif search_value in user.name.value.lower():
+                contacts.append(user)
+            elif user.email and search_value in user.email.value.lower():
                 contacts.append(user)
             elif any(search_value in phone.value for phone in user.phones):
                 contacts.append(user)
-            elif hasattr(user, 'birthday') and user.birthday and search_value in user.birthday.value.strftime('%d %B, %Y'):
+            elif hasattr(user, 'birthday') and user.birthday and search_value in birthday_str_formats:
                 contacts.append(user)
+
         return contacts
+
+    def birthdayStrFormats(self, user):
+        return [
+            user.birthday.value.strftime('%d.%m.%Y').lower(),  # 22.07.1983
+            user.birthday.value.strftime('%d').lower(),        # 22
+            user.birthday.value.strftime('%m').lower(),        # 07
+            user.birthday.value.strftime('%-m').lower(),       # 7
+            user.birthday.value.strftime('%Y').lower(),        # 1983
+            user.birthday.value.strftime('%d %B').lower(),     # 22 July
+            user.birthday.value.strftime('%B').lower(),        # July
+            user.birthday.value.strftime('%d.%m').lower(),     # 22.07
+        ]
 
     def delete(self, name):
         contact = self.data.pop(name, None)
         if not contact:
             raise KeyError
-    
+
     def get_birthdays_per_week(self):
         today = datetime.now().date()
         birthdays = defaultdict(list)
@@ -69,6 +87,7 @@ class AddressBook(UserDict):
                 name = user.name.value
                 phones = '; '.join(p.value for p in user.phones)
                 email = user.email
+                address = user.address
                 birthday = user.birthday.value.date()
                 birthday_this_year = birthday.replace(year=today.year)
 
@@ -78,9 +97,6 @@ class AddressBook(UserDict):
                 if today <= birthday_this_year <= target_date:
                     day_of_week = birthday_this_year.strftime('(%A)')
                     formatted_date = birthday_this_year.strftime('%d %B, %Y')
-                    birthdays[formatted_date].append((day_of_week, name, phones, email))
+                    birthdays[formatted_date].append((day_of_week, name, phones, email, address))
 
         return birthdays
-
-
-

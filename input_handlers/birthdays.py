@@ -11,9 +11,9 @@ def birthdays(args, contacts):
     # Підготовка даних для виведення
     data_for_table = []
     for date, info in birthdays_contact.items():
-        for day, name, phones, email in info:
-            data_for_table.append([date, day, name, phones, email])
+        for day, name, phones, email, address in info:
+            data_for_table.append([date, day, name, phones, email, address])
 
     # Використання tabulate для виведення даних у вигляді таблички
-    return tabulate(data_for_table,
-                    headers=['Date', 'Day', 'Name', 'Phones', 'Email', 'Address'], tablefmt="grid")
+    return "\n" + tabulate(data_for_table,
+                    headers=['Date', 'Day', 'Name', 'Phones', 'Email', 'Address'], tablefmt="grid", missingval="?") + "\n"

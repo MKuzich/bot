@@ -5,7 +5,7 @@ from prompt_toolkit import print_formatted_text
 from data_handlers import save_data, load_data
 from models import (AddressBook, NotesManager)
 from input_handlers import (
-    add_contact, change_contact, remove_contact, show_contact, all_contacts,
+    add_contact, change_contact, remove_contact, search_contact, show_contact, all_contacts,
     birthdays, add_birthday, show_birthday, add_email, add_address, show_address,
     add_note, edit_note, delete_note, show_note, search_note, sort_notes_by_tag
 )
@@ -93,7 +93,6 @@ def main():
             notes_manager.display_notes()
         elif command == "search-contact":
             print(search_contact(args, contacts))
-            notes_manager.display_notes()
         elif command == "search-note":
             print(search_note(args, notes_manager))
         elif command == "sort-notes":
