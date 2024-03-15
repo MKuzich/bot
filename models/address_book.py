@@ -18,8 +18,12 @@ class AddressBook(UserDict):
         contacts = []
         search_value = search_value.lower()
         for user in self.data.values():
-            birthday_str_formats = self.birthdayStrFormats(user)
+            birthday_str_formats = []
+            if hasattr(user, 'birthday'):
+                birthday_str_formats = self.birthdayStrFormats(user)
+            
             address_str = str(user.address).lower() if hasattr(user, 'address') and user.address else ""
+            
             if search_value in address_str:
                 contacts.append(user)
             elif search_value in user.name.value.lower():
@@ -38,7 +42,7 @@ class AddressBook(UserDict):
             user.birthday.value.strftime('%d.%m.%Y').lower(),  # 22.07.1983
             user.birthday.value.strftime('%d').lower(),        # 22
             user.birthday.value.strftime('%m').lower(),        # 07
-            user.birthday.value.strftime('%-m').lower(),       # 7
+            user.birthday.value.strftime('%m').lstrip('0').lower(),       # 7
             user.birthday.value.strftime('%Y').lower(),        # 1983
             user.birthday.value.strftime('%d %B').lower(),     # 22 July
             user.birthday.value.strftime('%B').lower(),        # July
