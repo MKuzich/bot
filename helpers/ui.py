@@ -15,9 +15,9 @@ style = Style.from_dict(
     }
 )
 
-def get_bottom_toolbar(contacts, notes_manager=None):
+def get_bottom_toolbar(contacts, notes_manager):
     now = datetime.now()
     contacts_len = len(contacts) if hasattr(contacts, "items") else 0
-    notes_len = len(notes_manager) if hasattr(notes_manager, "items") else 0
+    notes_len = len(notes_manager.data)
     return HTML(f'<b>Contacts</b> {contacts_len} <b>Notes</b> {notes_len} ' + \
                 f'<b>Time</b> {now.strftime("%H:%M:%S")}')

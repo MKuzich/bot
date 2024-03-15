@@ -45,7 +45,8 @@ def main():
 
     def get_toolbar():
         return get_bottom_toolbar(contacts, notes_manager)
-
+    
+    counter = 1
     contacts = AddressBook()
     notes_manager = NotesManager()
     session = PromptSession(
@@ -59,8 +60,14 @@ def main():
         auto_suggest=AutoSuggestFromHistory(),
     )
     try:
-        contacts = load_data()
-    except FileNotFoundError:  # move to handlers errors
+        data = load_data()
+        if "contacts" in data:
+            contacts = data["contacts"]
+        if "notes_manager" in data:
+            notes_manager = data["notes_manager"]
+        if "counter" in data:
+            counter = data["counter"]
+    except FileNotFoundError: 
         pass
     print("Welcome to the assistant bot!")
     while True:
@@ -73,14 +80,14 @@ def main():
             user_input = "help"
         except EOFError:
             print("Good bye!")
-            save_data(contacts)
+            save_data({"contacts": contacts, "notes_manager": notes_manager, "counter": counter})
             break
 
         command, *args = parse_input(user_input)
 
         if command in ["close", "exit", "bye", "quit"]:
             print("Good bye!")
-            save_data(contacts)
+            save_data({"contacts": contacts, "notes_manager": notes_manager, "counter": counter})
             break
         elif command in ["hello", "hi", "hey", "yo", "sup"]:
             print(HI_TEXT)
@@ -109,7 +116,8 @@ def main():
         elif command == "show-address":
             print(show_address(args, contacts))
         elif command == "add-note":
-            print(add_note(args, notes_manager))
+            print(add_note(args, notes_manager, counter))
+            counter += 1
         elif command == "add-tag":
             print(add_tag(args, notes_manager))
         elif command == "edit-note":

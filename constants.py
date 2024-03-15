@@ -184,6 +184,7 @@ NONE_COMMANDS = {
     "create" : None,
     "new": None,
     "all": None,
+    "add-note": None,
     "show-all-notes" : None,
     "search-contact": None,
     "search-note" : None,
