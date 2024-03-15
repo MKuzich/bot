@@ -1,5 +1,4 @@
 from input_error import input_error
-from errors import NoteSearchError
 
 @input_error
 def search_note(args, notes_manager):
@@ -12,4 +11,4 @@ def search_note(args, notes_manager):
             notes_info.append(note_info)
         return "\n".join(notes_info)
     else:
-        raise NoteSearchError
+        return "No notes found with that word"
