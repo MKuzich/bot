@@ -187,7 +187,8 @@ NONE_COMMANDS = {
     "show-all-notes" : None,
     "search-contact": None,
     "search-note" : None,
-    "sort-notes" : None
+    "sort-notes" : None,
+    "birthdays" : None,
 }
 
 HELP_TEXT = HTML("<strong>Hello, this is help!</strong>")

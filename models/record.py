@@ -38,7 +38,8 @@ class Record:
         self.address = Address(*args)
 
     def __str__(self):
-        return f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}, Address: {self.address}{', birthday: ' + self.birthday.value.strftime('%d %B, %Y') if hasattr(self, 'birthday') else ''}"
+        email = self.email if self.email else None
+        return f"Email {email} Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}, Address: {self.address}{', birthday: ' + self.birthday.value.strftime('%d %B, %Y') if hasattr(self, 'birthday') else ''}"
 
     def __repr__(self):
         return self.__str__()
