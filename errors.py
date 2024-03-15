@@ -11,7 +11,10 @@ class NoContacts(Exception):
     pass
 
 class NoBirthdays(Exception):
-    pass
+    """The date of birth search is limited to 365 days"""
+
+class LimitSearchBirthdays(Exception):
+    """The date of birth search is limited to 365 days"""
 
 class NoBirthday(KeyError):
     pass
