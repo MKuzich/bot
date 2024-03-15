@@ -61,12 +61,9 @@ def main():
     )
     try:
         data = load_data()
-        if "contacts" in data:
-            contacts = data["contacts"]
-        if "notes_manager" in data:
-            notes_manager = data["notes_manager"]
-        if "counter" in data:
-            counter = data["counter"]
+        contacts = data["contacts"]
+        notes_manager = data["notes_manager"]
+        counter = data["counter"]
     except FileNotFoundError: 
         pass
     print("Welcome to the assistant bot!")
