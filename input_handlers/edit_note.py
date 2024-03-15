@@ -11,7 +11,7 @@ def edit_note(args, notes_manager):
     field = args[1].lower()
     new_value = " ".join(args[2:])
 
-    for note in notes_manager.notes:
+    for note in notes_manager.data:
         if note.note_id == note_id:
             if field == "title":
                 note.title = new_value
