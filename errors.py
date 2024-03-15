@@ -35,4 +35,10 @@ class CountryCodeNotCorrect(Exception):
     """Given country code not correct"""
 
 class NoteSearchError(Exception):
-    "No notes found with that word"
+    """No notes found with those words"""
+
+class NoteSearchTagError(Exception):
+    """No notes found with those tags"""
+
+class NoteEmptyError(Exception):
+    """No notes found"""

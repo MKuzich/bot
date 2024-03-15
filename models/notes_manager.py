@@ -13,20 +13,36 @@ class NotesManager:
             print("Date:", note.date.strftime("%d.%m.%Y"))
             print("Tag:", note.tag)
             print()
-    
-    def search_note(self, word):
+        
+    def search_note(self, search_query):
         found_notes = []
+        search_words = [word.strip().lower() for word in search_query.split(',')]  
         for note in self.notes:
-            if word.lower() in note.title.lower() or word.lower() in note.description.lower() or word.lower() in note.tag.lower() or word.lower() in note.date.strftime("%d.%m.%Y"):
+            note_text = ' '.join([note.title.lower(), note.description.lower()] + [tag.lower() for tag in note.tag])
+            if any(word in note_text for word in search_words):
                 found_notes.append(note)
         return found_notes
-    
+
     def sort_notes_by_tag(self, tag=None):
+        if tag is None:
+            tag = [] 
+
         if tag:
-            filtered_notes = [note for note in self.notes if note.tag.lower() == tag.lower()]
+            filtered_notes = [
+                note for note in self.notes
+                if any(tag.lower() in [t.lower() for t in note.tag] for tag in tag)
+            ]
         else:
-            # Якщо тег не заданий, тоді працює з усіма нотатками
             filtered_notes = self.notes
 
-        sorted_notes = sorted(filtered_notes, key=lambda note: note.date, reverse=True)
+        sorted_notes = sorted(
+            filtered_notes,
+            key=lambda note: (
+                min([t.lower() for t in note.tag if t.lower() in [tag.lower() for tag in tag]], default=''),
+                note.date
+            ),
+            reverse=True
+        )
+
         return sorted_notes
+
