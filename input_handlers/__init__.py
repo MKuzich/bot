@@ -10,6 +10,7 @@ from .add_email import add_email
 from .add_address import add_address
 from .show_address import show_address
 from .add_note import add_note
+from .add_tag import add_tag
 from .edit_note import edit_note
 from .delete_note import delete_note
 from .show_note import show_note
