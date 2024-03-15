@@ -1,6 +1,7 @@
 """Index bot file"""
 
 from prompt_toolkit import PromptSession
+from prompt_toolkit import prompt
 from prompt_toolkit.auto_suggest import AutoSuggestFromHistory
 from prompt_toolkit import print_formatted_text
 from data_handlers import save_data, load_data
@@ -24,9 +25,10 @@ from input_handlers import (
     show_note,
     search_note,
     sort_notes_by_tag,
-    search_contact
+    search_contact,
+    select_contact
 )
-from helpers.ui import style, get_bottom_toolbar
+from helpers.ui import style, get_bottom_toolbar, get_green_html
 from helpers.session import get_completer, bot_history
 from constants import NONE_COMMANDS, HELP_TEXT, HI_TEXT, PROMT
 
@@ -93,7 +95,37 @@ def main():
         elif command in ["add", "create", "new"]:
             print(add_contact(args, contacts))
         elif command in ["change", "edit", "update"]:
-            print(change_contact(args, contacts))
+            contact = select_contact(args, contacts)
+            attr, name = args
+            promt = get_green_html(f"Enter new [{attr}] >>")
+            if attr == "phone":
+                # select
+                if len(contact.phones) == 1:
+                    placeholder = str(contact.phones[0].value)
+                    user_input = prompt(
+                        promt, bottom_toolbar=get_toolbar,
+                        refresh_interval=0.5, placeholder=placeholder
+                    )
+                    args = name, *parse_input(user_input)
+                    print(change_contact(args, contacts))
+                else:
+                    pass 
+            if attr == "email":
+                placeholder = contact.email.email
+                user_input = prompt(
+                    promt, bottom_toolbar=get_toolbar,
+                    refresh_interval=0.5, placeholder=placeholder
+                )
+                args = name, *parse_input(user_input)
+                print(add_address(args, contacts))
+            if attr == "address":
+                placeholder = str(contact.address)
+                user_input = prompt(
+                    promt, bottom_toolbar=get_toolbar,
+                    refresh_interval=0.5, placeholder=placeholder
+                )
+                args = name, *parse_input(user_input)
+                print(add_address(args, contacts))
         elif command in ["delete", "remove", "drop"]:
             print(remove_contact(args, contacts))
         elif command == "phone":

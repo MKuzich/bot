@@ -22,3 +22,6 @@ class Email(Field):
         if not re.match(EMAIL_PATTERN, email):
             raise EmailNotCorrect
         self.__email = email
+
+    def __str__(self):
+        return self.__email

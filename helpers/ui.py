@@ -41,3 +41,7 @@ def get_bottom_toolbar(contacts, notes_manager):
     padding = HTML("<padding>%s</padding>") % (" " * padding_size,)
 
     return merge_formatted_text([left_part, padding, right_part])
+
+
+def get_green_html(text):
+    return HTML(f"<ansigreen>{text}</ansigreen>")

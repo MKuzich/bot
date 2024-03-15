@@ -17,4 +17,4 @@ from .show_note import show_note
 from .search_note import search_note
 from .sort_notes_by_tag import sort_notes_by_tag
 from .search_contact import search_contact
-
+from .select_contact import select_contact
