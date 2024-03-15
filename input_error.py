@@ -8,7 +8,10 @@ from errors import (
     EmailNotCorrect,
     BuildingNumberNotCorrect,
     PostalCodeNotCorrect,
-    CountryCodeNotCorrect
+    CountryCodeNotCorrect,
+    NoteSearchError,
+    NoteSearchTagError,
+    NoteEmptyError
 )
 
 def input_error(func):
@@ -42,6 +45,12 @@ def input_error(func):
             return "PostalCode not core=rect for this country"
         except CountryCodeNotCorrect:
             return "Inputed country code not correct or counry not found."
+        except NoteSearchError:
+            return "No notes found with those words."
+        except NoteSearchTagError:
+            return "No notes found with those tags."
+        except NoteEmptyError:
+            return "No notes found."
         except Exception as e:
             return f"An error occurred: {e}"
     return inner
