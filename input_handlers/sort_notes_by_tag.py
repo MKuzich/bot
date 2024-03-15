@@ -1,4 +1,5 @@
 from input_error import input_error
+from errors import NoteSearchTagError, NoteEmptyError
 
 @input_error
 def sort_notes_by_tag(args, notes_manager):
@@ -16,5 +17,5 @@ def sort_notes_by_tag(args, notes_manager):
             notes_info.append(note_info)
         return "\n".join(notes_info)
     else:
-        return "No notes found with those tags" if tag else "There are no notes."
+        raise NoteSearchTagError if tag else NoteEmptyError
 

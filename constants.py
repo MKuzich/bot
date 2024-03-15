@@ -1,4 +1,5 @@
 """File with default configurations"""
+from prompt_toolkit.formatted_text import HTML
 
 EMAIL_PATTERN = r"^\S+@\S+\.\S+$"
 BULDING_PATTERN = r"^\d+(?:[\\/]?\d+[A-Za-z]*)?$"
@@ -168,3 +169,29 @@ POSTAL_CODES_BY_COUNTRY = {
     "XK": r"\d{5}",
     "YT": r"976\d{2}",
 }
+
+NONE_COMMANDS = {
+    "hello" : None,
+    "hi" : None,
+    "hey" : None,
+    "yo" : None, 
+    "sup" : None,
+    "close" : None,
+    "exit" : None,
+    "bye" : None,
+    "quit" : None,
+    "add" : None,
+    "create" : None,
+    "new": None,
+    "all": None,
+    "show-all-notes" : None,
+    "search-contact": None,
+    "search-note" : None,
+    "sort-notes" : None
+}
+
+HELP_TEXT = HTML("<strong>Hello, this is help!</strong>")
+HI_TEXT = HTML("<strong>How can I help you?</strong> I can do this: \n" +\
+               '<ansigreen>Add contacts</ansigreen> \n' +\
+               '<ansired>Delete contacts</ansired>'
+               )
