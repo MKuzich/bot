@@ -21,6 +21,11 @@ class NoBirthdays(Exception):
 class LimitSearchBirthdays(Exception):
     """The date of birth search is limited to 365 days"""
 
+class EmptyArgsBirthdays(Exception):
+    """You must write a name, for example >>> show-birthday Siri"""
+
+class EmptyArgsContact(Exception):
+    """You should write a search element like >>> show-contact Siri"""
 
 class NoBirthday(KeyError):
     pass
@@ -60,7 +65,10 @@ class NoteSearchTagError(Exception):
 
 class NoteEmptyError(Exception):
     """No tags entered for sorting"""
- 
+
+class NoteValueArgsError(Exception):
+    """Usage: show-note <note_id>"""
+
 class NoteIdNotCorrect(Exception):
     """Note id not correct"""
 

@@ -24,6 +24,7 @@ from input_handlers import (
     sort_notes_by_tag,
     search_contact,
     select_contact,
+    show_all_notes,
     edit_phone,
     add_phone,
     remove_phone,
@@ -218,7 +219,7 @@ def main():
         elif command == "show-note":
             print(show_note(args, notes_manager))
         elif command == "show-all-notes":
-            notes_manager.display_notes()
+            print(show_all_notes(notes_manager))
         elif command == "search-contact":
             print(search_contact(args, contacts))
         elif command == "search-note":

@@ -6,6 +6,8 @@ from errors import (
     NoContacts,
     NoBirthdays,
     LimitSearchBirthdays,
+    EmptyArgsBirthdays,
+    EmptyArgsContact,
     EmailNotCorrect,
     BuildingNumberNotCorrect,
     PostalCodeNotCorrect,
@@ -13,6 +15,7 @@ from errors import (
     NoteSearchError,
     NoteSearchTagError,
     NoteEmptyError,
+    NoteValueArgsError,
     NoteIdNotCorrect,
     NoteIdNotInList,
     NoteFormatError,
@@ -35,9 +38,13 @@ def input_error(func):
         except NoBirthday:
             return "No birthday for this contact."
         except NoContacts:
-            return "No contacts in phonebook."
+            return "\nNo contacts in phonebook.\n"
         except NoBirthdays:
             return "There are no birthdays in the specified period."
+        except EmptyArgsBirthdays:
+            return "\nYou must write a name, for example >>> show-birthday Siri\n"
+        except EmptyArgsContact:
+            return "\nYou should write a search element like >>> search-contact Siri\n"
         except LimitSearchBirthdays:
             return "Enter a date less than 365 days"
         except EmailNotCorrect:
@@ -54,6 +61,22 @@ def input_error(func):
             return "No notes found with those tags."
         except NoteEmptyError:
             return "No notes found."
+        except NoteValueArgsError:
+            return "Usage: show-note <note_id>."
+        except ValueError:
+            return MESSAGES["not_correct_format"]
+        except IndexError:
+            return MESSAGES["not_found"]
+        except KeyError:
+            return MESSAGES["not_found"]
+        except KeyboardInterrupt:
+            return "Canceled!"
+        except NoteIdNotCorrect:
+            return "Note ID should be an integer."
+        except NoteIdNotInList:
+            return "Note ID not in list."
+        except NoteFormatError:
+            return "Note format not correct. Usage: add-note <Title> <Description>"
         except Exception as e:
             return get_red_html(f"An error occurred: {e}")
 

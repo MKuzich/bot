@@ -8,13 +8,11 @@ class NotesManager(UserList):
         self.data.append(note)
 
     def display_notes(self):
+        list_note = []
         for note in self.data:
-            print("ID:", note.note_id)
-            print("Title:", note.title)
-            print("Description:", note.description)
-            print("Date:", note.date.strftime("%d.%m.%Y"))
-            print("Tag:", note.tag)
-            print()
+            list_note.append(note)
+
+        return list_note
         
     def search_note(self, search_query):
         found_notes = []
