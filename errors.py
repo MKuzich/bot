@@ -81,5 +81,5 @@ class NoteFormatError(Exception):
     """Note format not correct"""
 
 
-class NoteIdNotEntered(Exception):
-    """No id entered"""
+class NoteIdAndTagNotEntered(Exception):
+    """No id and tag entered"""

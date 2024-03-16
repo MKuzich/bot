@@ -1,10 +1,10 @@
 from input_error import input_error
-from errors import NoteIdNotInList, NoteIdNotCorrect, NoteIdNotEntered
+from errors import NoteIdNotInList, NoteIdNotCorrect, NoteIdAndTagNotEntered
 
 @input_error
 def add_tag(args, notes_manager):
     if len(args) == 0 or args[0].strip() == '':
-        raise NoteIdNotEntered("Note ID must be entered.")
+        raise NoteIdAndTagNotEntered("Note ID must be entered.")
 
     try:
         note_id = int(args[0])
