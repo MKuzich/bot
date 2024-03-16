@@ -1,8 +1,11 @@
 from input_error import input_error
-from errors import NoBirthday, NameIsString
+from errors import NoBirthday, NameIsString, EmptyArgsBirthdays
 
 @input_error
 def show_birthday(args, contacts):
+    if not args:
+        raise EmptyArgsBirthdays
+
     name = args[0]
     if not name.isalpha():
         raise NameIsString

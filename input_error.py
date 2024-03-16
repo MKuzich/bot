@@ -6,6 +6,7 @@ from errors import (
     NoContacts,
     NoBirthdays,
     LimitSearchBirthdays,
+    EmptyArgsBirthdays,
     EmailNotCorrect,
     BuildingNumberNotCorrect,
     PostalCodeNotCorrect,
@@ -38,6 +39,8 @@ def input_error(func):
             return "No contacts in phonebook."
         except NoBirthdays:
             return "There are no birthdays in the specified period."
+        except EmptyArgsBirthdays:
+            return "\nYou must write a name, for example >>> show-birthday Siri\n"
         except LimitSearchBirthdays:
             return "Enter a date less than 365 days"
         except EmailNotCorrect:

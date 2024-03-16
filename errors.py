@@ -16,6 +16,9 @@ class NoBirthdays(Exception):
 class LimitSearchBirthdays(Exception):
     """The date of birth search is limited to 365 days"""
 
+class EmptyArgsBirthdays(Exception):
+    """You must write a name, for example >>> show-birthday Siri"""
+
 class NoBirthday(KeyError):
     pass
 
