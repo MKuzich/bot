@@ -237,6 +237,10 @@ MESSAGES = {
         '<strong><style fg="#F87168">Error: invalid command input\n</style></strong>'
         'Type <style fg="#00aa00"><strong>help</strong></style> to show usage of commads.'
     ),
+    "dev": HTML(
+        '<strong><style fg="#F87168">Error: in development\n</style></strong>'
+        'Type <style fg="#00aa00"><strong>help</strong></style> to show usage of commads.'
+    ),
 }
 
 OTHER_PROMT = HTML(
