@@ -51,3 +51,6 @@ class NoteSearchTagError(Exception):
 
 class NoteEmptyError(Exception):
     """No notes found"""
+
+class NoteValueArgsError(Exception):
+    """Usage: show-note <note_id>"""

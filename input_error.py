@@ -14,7 +14,8 @@ from errors import (
     CountryCodeNotCorrect,
     NoteSearchError,
     NoteSearchTagError,
-    NoteEmptyError
+    NoteEmptyError,
+    NoteValueArgsError
 )
 
 def input_error(func):
@@ -60,6 +61,8 @@ def input_error(func):
             return "No notes found with those tags."
         except NoteEmptyError:
             return "No notes found."
+        except NoteValueArgsError:
+            return "Usage: show-note <note_id>"
         except Exception as e:
             return f"An error occurred: {e}"
     return inner
