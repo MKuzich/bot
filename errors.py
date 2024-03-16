@@ -59,10 +59,7 @@ class NoteSearchTagError(Exception):
 
 
 class NoteEmptyError(Exception):
-<<<<<<< HEAD
     """No tags entered for sorting"""
-=======
-    """No notes found"""
  
 class NoteIdNotCorrect(Exception):
     """Note id not correct"""
@@ -74,4 +71,3 @@ class NoteIdNotInList(Exception):
 
 class NoteFormatError(Exception):
     """Note format not correct"""
->>>>>>> main
