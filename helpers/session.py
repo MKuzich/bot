@@ -23,18 +23,27 @@ def get_completer(none_commands, contacts=None, notes=None):
     nested_dict["add-email"] = contacts_keys
     nested_dict["add-address"] = contacts_keys
     nested_dict["add-phone"] = contacts_keys
-    nested_dict["delete-phone"] = contacts_keys
     nested_dict["show-address"] = contacts_keys
     nested_dict["add-birthday"] = contacts_keys
-    nested_dict["remove"] = contacts_keys
-    nested_dict["delete"] = contacts_keys
-    nested_dict["drop"] = contacts_keys
+    nested_dict["delete"] = {
+        "email": contacts_keys,
+        "phone": contacts_keys,
+        "birthday": contacts_keys,
+        "address": contacts_keys,
+        "contact": contacts_keys,
+        "note": None,
+        "tag": None
+    }
+    nested_dict["remove"] =  nested_dict["delete"]
+    nested_dict["drop"] = nested_dict["delete"]
     nested_dict["show-note"] = notes_keys
     nested_dict["edit"] = {
         "email": contacts_keys,
         "phone": contacts_keys,
         "birthday": contacts_keys,
         "address": contacts_keys,
+        "note": None,
+        "tag": None 
     }
     nested_dict["update"] = nested_dict["edit"]
     nested_dict["change"] = nested_dict["edit"]
