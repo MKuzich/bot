@@ -7,6 +7,7 @@ from errors import (
     NoBirthdays,
     LimitSearchBirthdays,
     EmptyArgsBirthdays,
+    EmptyArgsContact,
     EmailNotCorrect,
     BuildingNumberNotCorrect,
     PostalCodeNotCorrect,
@@ -36,11 +37,13 @@ def input_error(func):
         except KeyError:
             return "Contact not found."
         except NoContacts:
-            return "No contacts in phonebook."
+            return "\nNo contacts in phonebook.\n"
         except NoBirthdays:
             return "There are no birthdays in the specified period."
         except EmptyArgsBirthdays:
             return "\nYou must write a name, for example >>> show-birthday Siri\n"
+        except EmptyArgsContact:
+            return "\nYou should write a search element like >>> search-contact Siri\n"
         except LimitSearchBirthdays:
             return "Enter a date less than 365 days"
         except EmailNotCorrect:

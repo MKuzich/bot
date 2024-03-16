@@ -19,6 +19,9 @@ class LimitSearchBirthdays(Exception):
 class EmptyArgsBirthdays(Exception):
     """You must write a name, for example >>> show-birthday Siri"""
 
+class EmptyArgsContact(Exception):
+    """You should write a search element like >>> show-contact Siri"""
+
 class NoBirthday(KeyError):
     pass
 
