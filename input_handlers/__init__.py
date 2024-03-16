@@ -18,3 +18,6 @@ from .search_note import search_note
 from .sort_notes_by_tag import sort_notes_by_tag
 from .search_contact import search_contact
 from .select_contact import select_contact
+from .edit_phone import edit_phone
+from .add_phone import add_phone
+from .remove_phone import remove_phone
