@@ -79,3 +79,7 @@ class NoteIdNotInList(Exception):
 
 class NoteFormatError(Exception):
     """Note format not correct"""
+
+
+class NoteIdNotEntered(Exception):
+    """No id entered"""

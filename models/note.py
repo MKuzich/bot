@@ -2,10 +2,10 @@ import datetime
 
 
 class Note:
-
-    def __init__(self, title, description, note_id, date=None,  tag=[]):
+    
+    def __init__(self, title, description, note_id, date=None, tag=None):
         self.title = title
         self.description = description
-        self.date = datetime.datetime.now()
+        self.date = date if date else datetime.datetime.now()
         self.note_id = note_id
-        self.tag = tag
+        self.tag = tag if tag else []
