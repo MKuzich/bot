@@ -25,8 +25,9 @@ def get_bottom_toolbar(contacts, notes_manager):
     now = datetime.now()
     contacts_len = len(contacts) if hasattr(contacts, "items") else 0
     notes_len = len(notes_manager.data) 
+    count_birthdays = contacts.get_count_birthdays_per_week()
 
-    left_part = HTML(f"<b>Contacts</b> {contacts_len} <b>Notes</b> {notes_len} ")
+    left_part = HTML(f"<b>Contacts</b> {contacts_len} <b>Notes</b> {notes_len} <b>Birthdays</b> {count_birthdays}")
     right_part = HTML(f' <b> {now.strftime("%A")} </b>'
                       f'{now.strftime("%d %B")} <b>Time</b> {now.strftime("%H:%M:%S")}')
     used_width = sum(

@@ -54,6 +54,25 @@ class AddressBook(UserDict):
         if not contact:
             raise KeyError
 
+    def get_count_birthdays_per_week(self):
+        today = datetime.now().date()
+        target_date = today + timedelta(days=7)
+        count = 0
+        
+        for user in self.data.values():
+            if hasattr(user, 'birthday'):
+                # Переконуємося, що працюємо з датою, а не з datetime
+                birthday_date = user.birthday.value.date() if isinstance(user.birthday.value, datetime) else user.birthday.value
+                birthday_this_year = birthday_date.replace(year=today.year)
+                
+                if birthday_this_year < today:
+                    birthday_this_year = birthday_this_year.replace(year=today.year + 1)
+                
+                if today <= birthday_this_year <= target_date:
+                    count += 1
+
+        return count
+
     def get_birthdays_per_week(self):
         today = datetime.now().date()
         birthdays = defaultdict(list)
@@ -72,7 +91,7 @@ class AddressBook(UserDict):
             
             delta_days = (birthday_this_year - today).days
 
-            if delta_days < 7:
+            if delta_days < 300:
                 if birthday_this_year.weekday() > 4: 
                     if today.weekday() != 0 and today.weekday() < 5:
                         birthdays['Monday'].append(name)
