@@ -49,11 +49,11 @@ def input_error(func):
         except CountryCodeNotCorrect:
             return "Inputed country code not correct or counry not found."
         except NoteSearchError:
-            return "No notes found with those words."
+            return "No notes found with those words or numbers."
         except NoteSearchTagError:
             return "No notes found with those tags."
         except NoteEmptyError:
-            return "No notes found."
+            return "No tags entered for sorting."
         except Exception as e:
             return f"An error occurred: {e}"
     return inner
