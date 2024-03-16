@@ -83,3 +83,7 @@ class NoteFormatError(Exception):
 
 class NoteIdAndTagNotEntered(Exception):
     """No id and tag entered"""
+
+
+class TagNotEntered(Exception):
+    """No tag entered"""
