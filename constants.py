@@ -1,13 +1,24 @@
 """File with default configurations"""
+
 from prompt_toolkit.formatted_text import HTML
 
 EMAIL_PATTERN = r"^\S+@\S+\.\S+$"
 BULDING_PATTERN = r"^\d+(?:[\\/]?\d+[A-Za-z]*)?$"
-GB_POSTAL_CODE = r"(GIR[ ]?0AA|((AB|AL|B|BA|BB|BD|BH|BL|BN|BR|BS|BT|CA|CB|CF|CH|CM|CO|CR|CT|CV|"
-GB_POSTAL_CODE += r"CW|DA|DD|DE|DG|DH|DL|DN|DT|DY|E|EC|EH|EN|EX|FK|FY|G|GL|GY|GU|HA|HD|HG|HP|HR|"
-GB_POSTAL_CODE += r"HS|HU|HX|IG|IM|IP|IV|JE|KA|KT|KW|KY|L|LA|LD|LE|LL|LN|LS|LU|M|ME|MK|ML|N|NE|"
-GB_POSTAL_CODE += r"NG|NN|NP|NR|NW|OL|OX|PA|PE|PH|PL|PO|PR|RG|RH|RM|S|SA|SE|SG|SK|SL|SM|SN|SO|"
-GB_POSTAL_CODE += r"SP|SR|SS|ST|SW|SY|TA|TD|TF|TN|TQ|TR|TS|TW|UB|W|WA|WC|WD|WF|WN|WR|WS|WV|YO|"
+GB_POSTAL_CODE = (
+    r"(GIR[ ]?0AA|((AB|AL|B|BA|BB|BD|BH|BL|BN|BR|BS|BT|CA|CB|CF|CH|CM|CO|CR|CT|CV|"
+)
+GB_POSTAL_CODE += (
+    r"CW|DA|DD|DE|DG|DH|DL|DN|DT|DY|E|EC|EH|EN|EX|FK|FY|G|GL|GY|GU|HA|HD|HG|HP|HR|"
+)
+GB_POSTAL_CODE += (
+    r"HS|HU|HX|IG|IM|IP|IV|JE|KA|KT|KW|KY|L|LA|LD|LE|LL|LN|LS|LU|M|ME|MK|ML|N|NE|"
+)
+GB_POSTAL_CODE += (
+    r"NG|NN|NP|NR|NW|OL|OX|PA|PE|PH|PL|PO|PR|RG|RH|RM|S|SA|SE|SG|SK|SL|SM|SN|SO|"
+)
+GB_POSTAL_CODE += (
+    r"SP|SR|SS|ST|SW|SY|TA|TD|TF|TN|TQ|TR|TS|TW|UB|W|WA|WC|WD|WF|WN|WR|WS|WV|YO|"
+)
 GB_POSTAL_CODE += r"ZE)(\d[\dA-Z]?[ ]?\d[ABD-HJLN-UW-Z]{2}))|BFPO[ ]?\d{1,4})"
 
 POSTAL_CODES_BY_COUNTRY = {
@@ -171,32 +182,65 @@ POSTAL_CODES_BY_COUNTRY = {
 }
 
 NONE_COMMANDS = {
-    "hello" : None,
-    "hi" : None,
-    "hey" : None,
-    "yo" : None, 
-    "sup" : None,
-    "close" : None,
-    "exit" : None,
-    "bye" : None,
-    "quit" : None,
-    "add" : None,
-    "create" : None,
+    "hello": None,
+    "hi": None,
+    "hey": None,
+    "yo": None,
+    "sup": None,
+    "close": None,
+    "exit": None,
+    "bye": None,
+    "quit": None,
+    "add": None,
+    "create": None,
     "new": None,
     "all": None,
     "add-note": None,
-    "show-all-notes" : None,
+    "show-all-notes": None,
     "search-contact": None,
-    "search-note" : None,
-    "sort-notes" : None,
-    "birthdays" : None,
+    "search-note": None,
+    "sort-notes": None,
+    "birthdays": None,
 }
 
 HELP_TEXT = HTML("<strong>Hello, this is help!</strong>")
-HI_TEXT = HTML("<strong>How can I help you?</strong> I can do this: \n" +\
-               '<ansigreen>Add contacts</ansigreen> \n' +\
-               '<ansired>Delete contacts</ansired>'
-               )
-PROMT = HTML(
-    '<style fg="#00aa00">>>> </style>'
+HI_TEXT = HTML(
+    "<strong>How can I help you?</strong> I can do this: \n"
+    + "<ansigreen>Add contacts</ansigreen> \n"
+    + "<ansired>Delete contacts</ansired>"
+)
+PROMT = HTML('<style fg="#00aa00">>>> </style>')
+
+
+MESSAGES = {
+    "edit_no_args": HTML(
+        '<strong><style fg="#F87168">Error: Given format not supported\n</style></strong>'
+        '<strong><style fg="#00aa00">Usage: edit {what} {contact\\note} </style></strong>'
+    ),
+    "not_found": HTML(
+        '<style fg="#DC620C">I`m sorry, but I cannot find this..</style>'
+    ),
+    "canceled": HTML('<strong><style fg="#00aa00">Ok. Canceled!</style></strong>'),
+    "phone_not_set": HTML(
+        '<strong><style fg="#F87168">Error: No phones found</style></strong>'
+        '<strong><style fg="#00aa00">Usage: add-phone {contact} {phone} </style></strong>'
+    ),
+    "not_correct": HTML(
+        '<strong><style fg="#F87168">Error: No correct input\n</style></strong>'
+        '<strong><style fg="#00aa00">Usage: delete-phone {contact}</style></strong>'
+    ),
+    "not_correct_format": HTML(
+        '<strong><style fg="#F87168">Error: No correct input\n</style></strong>'
+        'Type <style fg="#00aa00"><strong>help</strong></style> to show usage of commads.'
+    ),
+    "invalid_commad": HTML(
+        '<strong><style fg="#F87168">Error: invalid command input\n</style></strong>'
+        'Type <style fg="#00aa00"><strong>help</strong></style> to show usage of commads.'
+    ),
+}
+
+OTHER_PROMT = HTML(
+    '<style fg="#22272B">45`ers</style>'
+    '<style fg="#072F68">@</style>'
+    '<style fg="#072F68">Mario</style>'
 )
