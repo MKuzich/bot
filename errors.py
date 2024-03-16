@@ -60,3 +60,14 @@ class NoteSearchTagError(Exception):
 
 class NoteEmptyError(Exception):
     """No notes found"""
+ 
+class NoteIdNotCorrect(Exception):
+    """Note id not correct"""
+
+
+class NoteIdNotInList(Exception):
+    """Note id not in list"""
+
+
+class NoteFormatError(Exception):
+    """Note format not correct"""

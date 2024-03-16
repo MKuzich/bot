@@ -13,6 +13,9 @@ from errors import (
     NoteSearchError,
     NoteSearchTagError,
     NoteEmptyError,
+    NoteIdNotCorrect,
+    NoteIdNotInList,
+    NoteFormatError,
 )
 from constants import MESSAGES
 from helpers.ui import get_red_html
@@ -59,6 +62,12 @@ def input_error(func):
             return MESSAGES["not_found"]
         except KeyboardInterrupt:
             return "Canceled!"
+        except NoteIdNotCorrect:
+            return "Note ID should be an integer."
+        except NoteIdNotInList:
+            return "Note ID not in list."
+        except NoteFormatError:
+            return "Note format not correct. Usage: add-note <Title> <Description>"
         except Exception as e:
             return get_red_html(f"An error occurred: {e}")
 
