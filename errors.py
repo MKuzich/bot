@@ -51,7 +51,7 @@ class CountryCodeNotCorrect(Exception):
 
 
 class NoteSearchError(Exception):
-    """No notes found with those words"""
+    """No notes found with those words or numbers"""
 
 
 class NoteSearchTagError(Exception):
@@ -59,7 +59,7 @@ class NoteSearchTagError(Exception):
 
 
 class NoteEmptyError(Exception):
-    """No notes found"""
+    """No tags entered for sorting"""
  
 class NoteIdNotCorrect(Exception):
     """Note id not correct"""

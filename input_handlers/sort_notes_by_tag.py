@@ -4,18 +4,21 @@ from errors import NoteSearchTagError, NoteEmptyError
 @input_error
 def sort_notes_by_tag(args, notes_manager):
     if args:
-        tag = [arg.strip() for arg in ' '.join(args).split(',')]  # Розділяємо вхідні дані на теги, враховуючи можливість введення декількох тегів через кому
+        tags = [arg.strip().lower() for arg in ' '.join(args).split(',')]  
     else:
-        tag = None
+        raise NoteEmptyError
 
-    sorted_notes = notes_manager.sort_notes_by_tag(tag)
-    if sorted_notes:
-        notes_info = []
+    sorted_notes = notes_manager.sort_notes_by_tag(tags)
+    if not sorted_notes:
+        raise NoteSearchTagError
+
+    output = []
+    for tag in tags:
+        output.append(f"Tag: {tag.capitalize()}")
         for note in sorted_notes:
-            tag_str = ', '.join(note.tag)
-            note_info = f"ID: {note.note_id}, Title: {note.title}, Description: {note.description}, Tags: {tag_str}, Date: {note.date.strftime('%d.%m.%Y')}"
-            notes_info.append(note_info)
-        return "\n".join(notes_info)
-    else:
-        raise NoteSearchTagError if tag else NoteEmptyError
+            if tag.lower() in [t.lower() for t in note.tag]:
+                note_info = f"ID: {note.note_id}, Title: {note.title}, Description: {note.description}, Tags: {', '.join(note.tag)}, Date: {note.date.strftime('%d.%m.%Y')}"
+                output.append(note_info)
+    return "\n".join(output)
+
 

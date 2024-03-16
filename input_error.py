@@ -49,25 +49,11 @@ def input_error(func):
         except CountryCodeNotCorrect:
             return "Inputed country code not correct or counry not found."
         except NoteSearchError:
-            return "No notes found with those words."
+            return "No notes found with those words or numbers."
         except NoteSearchTagError:
             return "No notes found with those tags."
         except NoteEmptyError:
             return "No notes found."
-        except ValueError:
-            return MESSAGES["not_correct_format"]
-        except IndexError:
-            return MESSAGES["not_found"]
-        except KeyError:
-            return MESSAGES["not_found"]
-        except KeyboardInterrupt:
-            return "Canceled!"
-        except NoteIdNotCorrect:
-            return "Note ID should be an integer."
-        except NoteIdNotInList:
-            return "Note ID not in list."
-        except NoteFormatError:
-            return "Note format not correct. Usage: add-note <Title> <Description>"
         except Exception as e:
             return get_red_html(f"An error occurred: {e}")
 
