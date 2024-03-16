@@ -1,3 +1,4 @@
+from datetime import datetime
 from collections import UserList
 class NotesManager(UserList):
     def __init__(self):
@@ -45,3 +46,23 @@ class NotesManager(UserList):
 
         return sorted_notes
 
+    def date_str_formats(self, note):
+        date_formats = [
+            note.date.strftime('%d.%m.%Y').lower(),
+            note.date.strftime('%d.%m').lower(),
+            note.date.strftime('%d %B').lower(),
+            note.date.strftime('%B').lower(),
+            note.date.strftime('%d').lower(),
+            note.date.strftime('%m').lower(),
+            note.date.strftime('%m').lstrip('0').lower(),
+            note.date.strftime('%Y').lower(),
+        ]
+        return date_formats
+
+    def search_notes_by_date(self, search_value):
+        found_notes = []
+        search_value = search_value.lower()
+        for note in self.data:
+            if any(search_value in format for format in self.date_str_formats(note)):
+                found_notes.append(note)
+        return found_notes
