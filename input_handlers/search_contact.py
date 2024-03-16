@@ -21,4 +21,4 @@ def search_contact(args, contacts):
     if not data_for_table:
         raise NoContacts
 
-    return "\n" + tabulate(data_for_table, headers=['Name', 'Phones', 'Email', 'Birthday', 'Address'], tablefmt="grid", missingval="?") + "\n"
+    return "\n" + tabulate(data_for_table, headers=['Name', 'Phones', 'Email', 'Birthday', 'Address'], tablefmt="grid", missingval="?", maxcolwidths=[None, 30, 30, 30, 30]) + "\n"
