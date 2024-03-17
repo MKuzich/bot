@@ -1,3 +1,4 @@
+from helpers.table_output import table_output
 from input_error import input_error
 from errors import NoteSearchTagError, NoteEmptyError
 
@@ -12,13 +13,23 @@ def sort_notes_by_tag(args, notes_manager):
     if not sorted_notes:
         raise NoteSearchTagError
 
-    output = []
+    data_for_table = []
     for tag in tags:
-        output.append(f"Tag: {tag.capitalize()}")
+        #data_for_table.append(f"Tag: {tag.capitalize()}")
         for note in sorted_notes:
             if tag.lower() in [t.lower() for t in note.tag]:
-                note_info = f"ID: {note.note_id}, Title: {note.title}, Description: {note.description}, Tags: {', '.join(note.tag)}, Date: {note.date.strftime('%d.%m.%Y')}"
-                output.append(note_info)
-    return "\n".join(output)
+                note_id = note.note_id
+                note_title = note.title or "?"
+                note_description = note.description or "?"
+                note_tag = ', '.join(note.tag) or "?"
+                note_date = note.date.strftime("%d.%m.%Y")
 
+                data_for_table.append([note_id, note_title, note_description, note_tag, note_date])
 
+    #settings for tabulate
+    headers=['ID', 'Title', 'Description', 'Tags', 'Date']
+    tablefmt="grid"
+    missingval="?"
+    maxcolwidths=[None, 30, 30, 30, 30]
+
+    return table_output(data_for_table, headers, tablefmt, missingval,  maxcolwidths)

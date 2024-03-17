@@ -80,6 +80,8 @@ class NoteIdNotInList(Exception):
 class NoteFormatError(Exception):
     """Note format not correct"""
 
+class AddressNotFound(Exception):
+    """Address not found"""
 
 class NoteIdAndTagNotEntered(Exception):
     """No id and tag entered"""

@@ -14,6 +14,35 @@ class AddressBook(UserDict):
             raise KeyError
         return contact
 
+    def find_by_name(self, search_value):
+        contacts = []
+        for user in self.data.values():
+            if search_value in user.name.value.lower():
+                contacts.append(user)
+
+        return contacts
+
+    def find_birthday_by_name(self, search_value):
+        contacts = []
+        for user in self.data.values():
+            if search_value.lower() in user.name.value.lower():
+                if hasattr(user, 'birthday'):
+                    contacts.append(user)
+
+        return contacts
+
+    def find_address_by_name(self, search_value):
+        contacts = []
+        for user in self.data.values():
+            if search_value.lower() == user.name.value.lower():
+                address_str = (str(user.address).lower()
+                           if hasattr(user, 'address') and user.address else "")
+
+                if address_str:
+                    contacts.append(user)
+
+        return contacts
+
     def search_by_any(self, search_value):
         contacts = []
         search_value = search_value.lower()
@@ -21,9 +50,10 @@ class AddressBook(UserDict):
             birthday_str_formats = []
             if hasattr(user, 'birthday'):
                 birthday_str_formats = self.birthdayStrFormats(user)
-            
-            address_str = str(user.address).lower() if hasattr(user, 'address') and user.address else ""
-            
+
+            address_str = (str(user.address).lower()
+                           if hasattr(user, 'address') and user.address else "")
+
             if search_value in address_str:
                 contacts.append(user)
             elif search_value in user.name.value.lower():
@@ -32,7 +62,8 @@ class AddressBook(UserDict):
                 contacts.append(user)
             elif any(search_value in phone.value for phone in user.phones):
                 contacts.append(user)
-            elif hasattr(user, 'birthday') and user.birthday and search_value in birthday_str_formats:
+            elif (hasattr(user, 'birthday') and user.birthday and search_value
+                  in birthday_str_formats):
                 contacts.append(user)
 
         return contacts
