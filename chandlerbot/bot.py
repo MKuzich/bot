@@ -49,6 +49,9 @@ def main():
         pass
     session = open_session(NONE_COMMANDS, contacts, notes_manager, style)
     print("Welcome to the assistant bot!")
+
+    
+
     while True:
         try:
             user_input = session.prompt(
@@ -73,7 +76,10 @@ def main():
         elif command in ["help"]:
             print(HELP_TEXT)
         elif command in ["add", "create", "new"]:
-            print(adder(args, contacts, notes_manager, counter))
+            res = adder(args, contacts, notes_manager, counter)
+            print(res)
+            if res == "Note added":
+                counter += 1
         elif command in ["change", "edit", "update"]:
             print(editor(args, contacts, notes_manager))
         elif command in ["delete", "remove", "drop"]:
