@@ -9,6 +9,7 @@ from input_handlers import (
     add_address,
     add_phone,
     add_note,
+    add_tag
 )
 from helpers.inputs import parse_input
 from helpers.ui import (
@@ -65,7 +66,24 @@ def adder(args, contacts, notes_manager, counter):
         return note
 
     if command == "tag":
-        pass
+        notes_list = [(str(note.note_id), note.title) for note in notes_manager.data]
+        note_id = name
+        if not note_id:
+            dialog = get_radio_dialog(
+                "Select note", notes_list, "Please select note to add tag"
+            )
+            note_id = dialog.run()
+            if not note_id:
+                return MESSAGES["canceled"]
+        if not value:
+            help_text = "Input tags for note, use format <tag1, tag2> :"
+            dialog = get_input_dialog("Input tags", help_text, "")
+            value = dialog.run()
+            if not value:
+                return MESSAGES["canceled"]
+
+        args = note_id, *parse_input(value, delimeter=",",strip=True)
+        return add_tag(args, notes_manager)
 
     if command in ["phone", "email", "address", "birthday"]:
         contacts_list = [(c, c) for c, _ in contacts.items()]

@@ -8,7 +8,8 @@ from input_handlers import (
     add_email,
     add_address,
     add_phone,
-    add_birthday
+    add_birthday,
+    edit_note
 )
 from helpers.inputs import parse_input
 from helpers.ui import (
@@ -43,7 +44,54 @@ def editor(args, contacts, notes_manager):
             return contact
 
     if attr in ["note", "tag"]:
-        pass
+        notes_list = [(str(note.note_id), note.title) for note in notes_manager.data]
+        if not notes_list:
+            return MESSAGES["notes_not_found"]
+        note_id = value
+        if not note_id:
+            dialog = get_radio_dialog(
+                "Select note", notes_list, "Please select note to edit"
+            )
+            note_id = dialog.run()
+            if not note_id:
+                return MESSAGES["canceled"]
+        note = notes_manager.get_note(int(note_id))
+
+    if attr == "note":
+        field_to_edit = [name] if name else ["title", "description", "tag"]
+        result = []
+        if "title" in field_to_edit:
+            title = note.title if note.title else ""
+            dialog = get_input_dialog(
+                "Edit note", "Edit title of note", title
+            )
+            new_title = dialog.run()
+            if not new_title:
+                return MESSAGES["canceled"]
+            args = note_id, "title", new_title
+            result.append(edit_note(args, notes_manager))
+
+        if "description" in field_to_edit:
+            description = note.description if note.description else ""
+            dialog = get_input_dialog(
+                "Edit note", "Edit description of note", description
+            )
+            new_description = dialog.run()
+            if not new_description :
+                return MESSAGES["canceled"]
+            args = note_id, "description", new_description
+            result.append(edit_note(args, notes_manager))
+
+        if "tag" in field_to_edit:
+            dialog = get_input_dialog(
+                "Edit note", "Edit tags for note", note.get_tags()
+            )
+            new_description = dialog.run()
+            if not new_description :
+                return MESSAGES["canceled"]
+            args = note_id, "tag", new_description
+            result.append(edit_note(args, notes_manager))
+        return "\n".join(res for res in result)
 
     if attr == "phone":
         if len(contact.phones) == 1:

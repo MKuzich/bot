@@ -1,4 +1,4 @@
-from tabulate import tabulate
+from helpers.table_output import table_output
 from input_error import input_error
 from errors import NoNotes
 
@@ -17,4 +17,10 @@ def show_all_notes(notes):
     if not data_for_table:
         raise NoNotes
 
-    return "\n" + tabulate(data_for_table, headers=['ID', 'Title', 'Description', 'Date', 'Tags'], tablefmt="grid", missingval="?", maxcolwidths=[None, 30, 30, 30, 30]) + "\n"
+    #settings for tabulate
+    headers = ['ID', 'Title', 'Description', 'Date', 'Tags']
+    tablefmt="grid"
+    missingval="?"
+    maxcolwidths=[None, 30, 30, 30, 30]
+
+    return table_output(data_for_table, headers, tablefmt, missingval,  maxcolwidths)

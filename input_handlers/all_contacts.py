@@ -1,9 +1,10 @@
-from tabulate import tabulate
+from helpers.table_output import table_output
 from input_error import input_error
 from errors import NoContacts
 
 @input_error
 def all_contacts(contacts):
+    """Output all contacts"""
     if not contacts:
         raise NoContacts
 
@@ -21,7 +22,10 @@ def all_contacts(contacts):
     if not data_for_table:
         raise NoContacts
 
-    #missingval do not working with maxcolwidths if one of element is None
-    table = "\n" + tabulate(data_for_table, headers=['Name', 'Phones', 'Email', 'Address', 'Birthday'], tablefmt="grid", missingval="?", maxcolwidths=[None, 30, 30, 30, 30]) + "\n"
+    #settings for tabulate
+    headers=['Name', 'Phones', 'Email', 'Address', 'Birthday']
+    tablefmt="grid"
+    missingval="?"
+    maxcolwidths=[None, 30, 30, 30, 30]
 
-    return table
+    return table_output(data_for_table, headers, tablefmt, missingval,  maxcolwidths)

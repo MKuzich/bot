@@ -19,6 +19,7 @@ from errors import (
     NoteIdNotCorrect,
     NoteIdNotInList,
     NoteFormatError,
+    AddressNotFound,
     NoteIdAndTagNotEntered,
     TagNotEntered,
     NoNotes
@@ -82,6 +83,8 @@ def input_error(func):
             return get_red_html("Note ID not in list.")
         except NoteFormatError:
             return get_red_html("Note format not correct. Usage: add-note &#10094; title &#10095; &#10094; description &#10095;")
+        except AddressNotFound:
+            return get_bold_green_html("Address not found")
         except NoteIdAndTagNotEntered:
             return get_red_html("Please enter note ID and minimum 1 tag.")
         except TagNotEntered:
