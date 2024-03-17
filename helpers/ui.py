@@ -14,7 +14,7 @@ from constants import STYLES
 
 style = Style.from_dict(STYLES)
 
-def get_bottom_toolbar(contacts, notes_manager):
+def get_bottom_toolbar(contacts, notes_manager, weather_info=None):
     now = datetime.now()
     contacts_len = len(contacts) if hasattr(contacts, "items") else 0
     notes_len = len(notes_manager.data)
@@ -24,10 +24,19 @@ def get_bottom_toolbar(contacts, notes_manager):
         f"<b>Contacts</b> {contacts_len} <b>Notes</b> {notes_len} "
         f"<b>Birthdays</b> {count_birthdays}"
     )
-    right_part = HTML(
-        f' <b> {now.strftime("%A")} </b>'
-        f'{now.strftime("%d %B")} <b>Time</b> {now.strftime("%H:%M:%S")}'
-    )
+    if weather_info:
+        temperature = weather_info["main"]["temp"]
+        right_part = HTML(
+            f' <b>Temperature: {temperature} </b>'
+            f' <b>City: {weather_info["name"]}</b>'
+            f' <b> {now.strftime("%A")} </b>'
+            f'{now.strftime("%d %B")} <b>Time</b> {now.strftime("%H:%M:%S")}'
+        )
+    else:
+        right_part = HTML(
+            f' <b> {now.strftime("%A")} </b>'
+            f'{now.strftime("%d %B")} <b>Time</b> {now.strftime("%H:%M:%S")}'
+        )
     used_width = sum(
         [
             fragment_list_width(to_formatted_text(left_part)),
