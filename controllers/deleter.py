@@ -39,66 +39,71 @@ def deleter(args, contacts, notes_manager):
         contact = select_contact(contact_args, contacts)
         if isinstance(contact, HTML):
             return contact
-        if attr == "phone":
-            if not value:
-                if len(contact.phones) == 1:
-                    value = str(contact.phones[0].value)
-                elif len(contact.phones) > 1:
-                    phones = [(p.value, p.value) for p in contact.phones]
-                    dialog = get_radio_dialog(
-                        "Select phone", phones, "Select phone to remove"
-                    )
-                    value = dialog.run()
-                    if not value:
-                        return MESSAGES["canceled"]
-                else:
-                    return MESSAGES["phone_not_set"]
-            dialog = get_confirm_dialog(
-                        "Phone deletion", "Do you want to delete phone?"
-                    )
-            confirmed = dialog.run()
-            if not confirmed:
-                return MESSAGES["canceled"]
-            return remove_phone((name, value), contacts)
-        if attr == "email":
-            if not hasattr(contact, "email"):
-                return MESSAGES["email_not_set"]
-            dialog = get_confirm_dialog(
-                        "Email deletion", "Do you want to delete email?"
-                    )
-            confirmed = dialog.run()
-            if not confirmed:
-                return MESSAGES["canceled"]
-            return remove_email(contact.name.value, contacts)
-        if attr == "address":
-            if  not hasattr(contact, "address"):
-                return MESSAGES["address_not_set"]
-            dialog = get_confirm_dialog(
-                        "Address deletion", "Do you want to delete address?"
-                    )
-            confirmed = dialog.run()
-            if not confirmed:
-                return MESSAGES["canceled"]
-            return remove_address(contact.name.value, contacts)
-        if attr == "birthday":
-            print(contact)
-            if not hasattr(contact, "birthday"):
-                return MESSAGES["birthday_not_set"]
-            dialog = get_confirm_dialog(
-                        "Birthday deletion", "Do you want to delete birthday?"
-                    )
-            confirmed = dialog.run()
-            if not confirmed:
-                return MESSAGES["canceled"]
-            return remove_birthday(contact.name.value, contacts)
-        if attr == "contact":
-            dialog = get_confirm_dialog(
-                        "Contact deletion", "Do you want to delete contact?"
-                    )
-            confirmed = dialog.run()
-            if not confirmed:
-                return MESSAGES["canceled"]
-            return remove_contact(contact.name.value, contacts)
+
+    if attr == "phone":
+        if not value:
+            if len(contact.phones) == 1:
+                value = str(contact.phones[0].value)
+            elif len(contact.phones) > 1:
+                phones = [(p.value, p.value) for p in contact.phones]
+                dialog = get_radio_dialog(
+                    "Select phone", phones, "Select phone to remove"
+                )
+                value = dialog.run()
+                if not value:
+                    return MESSAGES["canceled"]
+            else:
+                return MESSAGES["phone_not_set"]
+        dialog = get_confirm_dialog(
+                    "Phone deletion", "Do you want to delete phone?"
+                )
+        confirmed = dialog.run()
+        if not confirmed:
+            return MESSAGES["canceled"]
+        return remove_phone((name, value), contacts)
+
+    if attr == "email":
+        if not hasattr(contact, "email"):
+            return MESSAGES["email_not_set"]
+        dialog = get_confirm_dialog(
+                    "Email deletion", "Do you want to delete email?"
+                )
+        confirmed = dialog.run()
+        if not confirmed:
+            return MESSAGES["canceled"]
+        return remove_email(contact.name.value, contacts)
+
+    if attr == "address":
+        if  not hasattr(contact, "address"):
+            return MESSAGES["address_not_set"]
+        dialog = get_confirm_dialog(
+                    "Address deletion", "Do you want to delete address?"
+                )
+        confirmed = dialog.run()
+        if not confirmed:
+            return MESSAGES["canceled"]
+        return remove_address(contact.name.value, contacts)
+
+    if attr == "birthday":
+        print(contact)
+        if not hasattr(contact, "birthday"):
+            return MESSAGES["birthday_not_set"]
+        dialog = get_confirm_dialog(
+                    "Birthday deletion", "Do you want to delete birthday?"
+                )
+        confirmed = dialog.run()
+        if not confirmed:
+            return MESSAGES["canceled"]
+        return remove_birthday(contact.name.value, contacts)
+
+    if attr == "contact":
+        dialog = get_confirm_dialog(
+                    "Contact deletion", "Do you want to delete contact?"
+                )
+        confirmed = dialog.run()
+        if not confirmed:
+            return MESSAGES["canceled"]
+        return remove_contact(contact.name.value, contacts)
 
     if attr in [ "note", "tag"]:
         pass

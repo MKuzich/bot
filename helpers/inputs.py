@@ -25,9 +25,9 @@ def get_prompt(promt_message, toolbar, style, placeholder, validator):
 
 
 @input_error
-def parse_input(user_input, delimeter=" ", strip=False):
+def parse_input(user_input, delimeter=" ", strip=False, no_lower=False):
     cmd, *args = user_input.split(delimeter)
-    cmd = cmd.strip().lower()
+    cmd = cmd if no_lower else cmd.strip().lower()
     if strip:
         args = [a.strip().lstrip() for a in args]
     return cmd, *args
