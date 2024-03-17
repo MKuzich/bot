@@ -120,7 +120,7 @@ def deleter(args, contacts, notes_manager):
                 return MESSAGES["canceled"]
         note = notes_manager.get_note(int(note_id))
         dialog = get_confirm_dialog(
-                    "Contact deletion", "Do you want to delete contact?"
+                    "Note deletion", "Do you want to delete note?"
                 )
         confirmed = dialog.run()
         if not confirmed:
