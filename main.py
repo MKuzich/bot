@@ -22,7 +22,7 @@ from input_handlers import (
 from controllers import editor, deleter, adder
 from helpers.ui import (
     style,
-    get_bottom_toolbar,
+    get_bottom_toolbar
 )
 from helpers.session import get_completer, open_session
 from helpers.inputs import parse_input

@@ -203,8 +203,10 @@ NONE_COMMANDS = {
 HELP_TEXT = HTML("<strong>Hello, this is help!</strong>")
 HI_TEXT = HTML(
     "<strong>How can I help you?</strong> I can do this: \n"
-    + "<ansigreen>Add contacts</ansigreen> \n"
-    + "<ansired>Delete contacts</ansired>"
+    + "<ansigreen>Add</ansigreen>/"
+    + "<ansiyellow>edit</ansiyellow>/"
+    + "<ansired>delete</ansired> "
+    + "contacts and notes\n"
 )
 PROMT_ = HTML('<style fg="#00aa00">>>> </style>')
 

@@ -45,6 +45,9 @@ def get_bottom_toolbar(contacts, notes_manager):
 def get_green_html(text):
     return HTML(f"<ansigreen>{text}</ansigreen>")
 
+def get_bold_green_html(text):
+    return HTML(f"<strong><ansigreen>{text}</ansigreen></strong>")
+
 
 def get_red_html(text):
     return HTML(f'<strong><style fg="#F87168">{text}</style></strong>')
