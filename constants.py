@@ -220,7 +220,19 @@ MESSAGES = {
     "canceled": HTML('<strong><style fg="#00aa00">Ok. Canceled!</style></strong>'),
     "phone_not_set": HTML(
         '<strong><style fg="#F87168">Error: No phones found</style></strong>'
-        '<strong><style fg="#00aa00">Usage: add-phone {contact} {phone} </style></strong>'
+        '<strong><style fg="#00aa00">Usage: add phone {contact} {phone} </style></strong>'
+    ),
+    "email_not_set": HTML(
+        '<strong><style fg="#F87168">Error: Email not found</style></strong>'
+        '<strong><style fg="#00aa00">Usage: add  email {contact} {email} </style></strong>'
+    ),
+    "address_not_set": HTML(
+        '<strong><style fg="#F87168">Error: No address found</style></strong>'
+        '<strong><style fg="#00aa00">Usage: add address {contact} {address} </style></strong>'
+    ),
+    "birthday_not_set": HTML(
+        '<strong><style fg="#F87168">Error: Birthday not found</style></strong>'
+        '<strong><style fg="#00aa00">Usage: add birthday {contact} {birthday} </style></strong>'
     ),
     "not_correct": HTML(
         '<strong><style fg="#F87168">Error: No correct input\n</style></strong>'

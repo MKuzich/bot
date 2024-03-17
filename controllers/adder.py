@@ -78,6 +78,7 @@ def adder(args, contacts, notes_manager, counter):
         contact = select_contact(contact_args, contacts)
         if command == "birthday":
             if not value:
+                init_text = str(contact.birthday) if hasattr(contact, "birthday") else ""
                 dialog = get_input_dialog(
                     "Input birthday",
                     "Input birthday for contact, use format<DD:MM:YYYY> :",
@@ -86,7 +87,7 @@ def adder(args, contacts, notes_manager, counter):
                 value = dialog.run()
                 if not value:
                     return MESSAGES["canceled"]
-            args = contact, *parse_input(value)
+            args = contact.name.value, *parse_input(value)
             return add_birthday(args, contacts)
 
         if command == "email":
