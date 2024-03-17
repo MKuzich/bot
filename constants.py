@@ -242,7 +242,19 @@ MESSAGES = {
         'Type <style fg="#00aa00"><strong>help</strong></style> to show usage of commads.'
     ),
 }
-
+STYLES = {
+    "completion-menu.completion": "bg:#008888 #ffffff",
+    "completion-menu.completion.current": "bg:#00aaaa #000000",
+    "scrollbar.background": "bg:#88aaaa",
+    "scrollbar.button": "bg:#222222",
+    "bottom-toolbar": "#103356 bg:#ff0000",
+    "bottom-toolbar.text": "#aaaa44 bg:#aa4444",
+    "padding": "#103356 bg:#ff0000",
+    "dialog": "bg:#103356",
+    "dialog frame.label": "bg:#88aaaa #000000",
+    "dialog.body": "#aaaa44 bg:#aaaa44",
+    "dialog shadow": "bg:#88aaaa",
+}
 OTHER_PROMT = HTML(
     '<style fg="#22272B">45`ers</style>'
     '<style fg="#072F68">@</style>'
