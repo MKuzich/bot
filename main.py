@@ -74,9 +74,9 @@ def main():
         elif command in ["add", "create", "new"]:
             print(adder(args, contacts, notes_manager, counter))
         elif command in ["change", "edit", "update"]:
-            print(editor(args, contacts))
+            print(editor(args, contacts, notes_manager))
         elif command in ["delete", "remove", "drop"]:
-            print(deleter(args, contacts))
+            print(deleter(args, contacts, notes_manager))
         elif command == "phone":
             print(show_contact(args, contacts))
         elif command == "all":

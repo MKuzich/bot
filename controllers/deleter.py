@@ -11,7 +11,7 @@ from helpers.ui import (
 )
 
 @input_error
-def deleter(args, contacts):
+def deleter(args, contacts, notes_manager):
     attr, name = args
     if not name:
         return MESSAGES["not_correct"]

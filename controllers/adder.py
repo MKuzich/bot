@@ -57,7 +57,10 @@ def adder(args, contacts, notes_manager, counter):
             if not value:
                 return MESSAGES["canceled"]
         args = name, value
-        return add_note(args, notes_manager, counter)
+        note = add_note(args, notes_manager, counter)
+        if note == "Note added":
+            counter += 1
+        return note
 
     if command == "tag":
         pass
