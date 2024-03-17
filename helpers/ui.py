@@ -51,12 +51,12 @@ def get_red_html(text):
 
 
 def get_radio_dialog(title, values, text):
-    radios = radiolist_dialog(values=values, title=title, text=text)
+    radios = radiolist_dialog(values=values, title=title, text=text , style=style,)
     return radios
 
 
-def get_input_dialog(title, text, default):
-    dialog = input_dialog(title=title, text=text, style=style, default=default)
+def get_input_dialog(title, text, default,):
+    dialog = input_dialog(title=title, text=text, style=style, default=default,)
     return dialog
 
 

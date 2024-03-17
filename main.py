@@ -4,14 +4,10 @@ from prompt_toolkit import print_formatted_text
 from data_handlers import save_data, load_data
 from models import AddressBook, NotesManager
 from input_handlers import (
-    add_contact,
     show_contact,
     all_contacts,
     birthdays,
-    add_birthday,
     show_birthday,
-    add_email,
-    add_address,
     show_address,
     add_note,
     add_tag,
@@ -22,9 +18,8 @@ from input_handlers import (
     sort_notes_by_tag,
     search_contact,
     show_all_notes,
-    add_phone,
 )
-from controllers import editor, deleter
+from controllers import editor, deleter, adder
 from helpers.ui import (
     style,
     get_bottom_toolbar,
@@ -77,7 +72,7 @@ def main():
         elif command in ["help"]:
             print(HELP_TEXT)
         elif command in ["add", "create", "new"]:
-            print(add_contact(args, contacts))
+            print(adder(args, contacts, notes_manager, counter))
         elif command in ["change", "edit", "update"]:
             print(editor(args, contacts))
         elif command in ["delete", "remove", "drop"]:
@@ -88,16 +83,8 @@ def main():
             print(all_contacts(contacts))
         elif command == "birthdays":
             print(birthdays(args, contacts))
-        elif command == "add-birthday":
-            print(add_birthday(args, contacts))
         elif command == "show-birthday":
             print(show_birthday(args, contacts))
-        elif command == "add-email":
-            print(add_email(args, contacts))
-        elif command == "add-phone":
-            print(add_phone(args, contacts))
-        elif command == "add-address":
-            print(add_address(args, contacts))
         elif command == "show-address":
             print(show_address(args, contacts))
         elif command == "add-note":
