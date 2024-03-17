@@ -50,27 +50,22 @@ def get_bottom_toolbar(contacts, notes_manager, weather_info=None):
 
     return merge_formatted_text([left_part, padding, right_part])
 
-
 def get_green_html(text):
     return HTML(f"<ansigreen>{text}</ansigreen>")
 
 def get_bold_green_html(text):
     return HTML(f"<strong><ansigreen>{text}</ansigreen></strong>")
 
-
 def get_red_html(text):
     return HTML(f'<strong><style fg="#F87168">{text}</style></strong>')
-
 
 def get_radio_dialog(title, values, text):
     radios = radiolist_dialog(values=values, title=title, text=text , style=style,)
     return radios
 
-
 def get_input_dialog(title, text, default,):
     dialog = input_dialog(title=title, text=text, style=style, default=default,)
     return dialog
-
 
 def get_confirm_dialog(title, text):
     dialog = yes_no_dialog(title=title, text=text, style=style)

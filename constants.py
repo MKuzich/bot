@@ -200,16 +200,60 @@ NONE_COMMANDS = {
     "show-birthday": None,
 }
 
-HELP_TEXT = HTML("<strong>Hello, this is help!</strong>")
+HELP_TEXT = HTML(
+    "<strong>Hello, this is help! Available commands:</strong>\n"
+    + "<ansigreen>add</ansigreen>/<ansigreen>create</ansigreen>/<ansigreen>new</ansigreen> <ansigreen>&#10094;attribute&#10095;</ansigreen> \n" 
+    + "   Available attributes:\n" 
+    + "   <ansigreen>email</ansigreen> - add email to existing contact\n"
+    + "   <ansigreen>phone</ansigreen> - add phone to existing contact\n"
+    + "   <ansigreen>birthday</ansigreen> - add birthday to existing contact\n"
+    + "   <ansigreen>address</ansigreen> - add address to existing contact\n"
+    + "   <ansigreen>contact</ansigreen> - add new contact\n"
+    + "   <ansigreen>note</ansigreen> - add new note\n"
+    + "   <ansigreen>tag</ansigreen> - add tag to existing note\n"
+    + "<ansiyellow>change</ansiyellow>/<ansiyellow>edit</ansiyellow>/<ansiyellow>update</ansiyellow> <ansiyellow>&#10094;attribute&#10095;</ansiyellow> \n"
+    + "   Available attributes:\n"
+    + "   <ansiyellow>email</ansiyellow> - edit email of existing contact\n"
+    + "   <ansiyellow>phone</ansiyellow> - edit phone of existing contact\n"
+    + "   <ansiyellow>birthday</ansiyellow> - edit birthday of existing contact\n"
+    + "   <ansiyellow>address</ansiyellow> - edit address of existing contact\n"
+    + "   <ansiyellow>note &#10094;attribute&#10095;</ansiyellow> - edit note\n"
+    + "      Available attributes:\n"
+    + "      <ansiyellow>title</ansiyellow> - edit title\n"
+    + "      <ansiyellow>description</ansiyellow> - edit description\n"
+    + "      <ansiyellow>tags</ansiyellow> - edit tags\n"
+    + "<ansired>delete</ansired>/<ansired>remove</ansired>/<ansired>drop</ansired> <ansired>&#10094;attribute&#10095;</ansired> \n"
+    + "   Available attributes:\n"
+    + "   <ansired>email</ansired> - delete email of existing contact\n"
+    + "   <ansired>phone</ansired> - delete phone of existing contact\n"
+    + "   <ansired>birthday</ansired> - delete birthday of existing contact\n"
+    + "   <ansired>address</ansired> - delete address of existing contact\n"
+    + "   <ansired>contact</ansired> - delete contact\n"
+    + "   <ansired>note</ansired> - delete note\n"
+    + "<ansiblue>all</ansiblue> - show all contacts\n"
+    + "<ansiblue>show-all-notes</ansiblue> - show all notes\n"
+    + "<ansiblue>hello</ansiblue>/<ansiblue>hi</ansiblue>/<ansiblue>hey</ansiblue>/<ansiblue>yo</ansiblue>/<ansiblue>sup</ansiblue> - say hello\n"
+    + "<ansiblue>help</ansiblue> - show this message\n"
+    + "<ansiblue>close</ansiblue>/<ansiblue>exit</ansiblue>/<ansiblue>bye</ansiblue>/<ansiblue>quit</ansiblue> - close the program\n"
+    + "<ansiblue>search-contact &#10094;name&#10095;</ansiblue> - search contact by any of contact attributes\n"
+    + "<ansiblue>search-note &#10094;word&#10095;</ansiblue> - search note by any of attributes\n"
+    + "<ansiblue>sort-notes &#10094;tag&#10095;</ansiblue> - sort notes by tag\n"
+    + "<ansiblue>phone &#10094;contact&#10095;</ansiblue> - show phone of existing contact\n"
+    + "<ansiblue>birthdays &#10094;days&#10095;</ansiblue> - show birthdays in the specified period\n"
+    + "<ansiblue>show-birthday &#10094;contact&#10095;</ansiblue> - show birthday of existing contact\n"
+    + "<ansiblue>show-address &#10094;contact&#10095;</ansiblue> - show address of existing contact\n"
+    + "<ansiblue>show-note &#10094;note id&#10095;</ansiblue> - show note by ID\n"
+)
+
 HI_TEXT = HTML(
     "<strong>How can I help you?</strong> I can do this: \n"
     + "<ansigreen>Add</ansigreen>/"
     + "<ansiyellow>edit</ansiyellow>/"
     + "<ansired>delete</ansired> "
     + "contacts and notes\n"
+    + "Type <ansiblue>help</ansiblue> to show usage of commads."
 )
 PROMT_ = HTML('<style fg="#00aa00">>>> </style>')
-
 
 MESSAGES = {
     "edit_no_args": HTML(
@@ -261,16 +305,16 @@ STYLES = {
     "scrollbar.background": "bg:#88aaaa",
     "scrollbar.button": "bg:#222222",
     "bottom-toolbar": "#103356 bg:#ff0000",
-    "bottom-toolbar.text": "#aaaa44 bg:#aa4444",
-    "padding": "#103356 bg:#ff0000",
+    "bottom-toolbar.text": "#aaaa44 bg:#000000",
+    "padding": "#008888 bg:#ff0000",
     "dialog": "bg:#103356",
     "dialog frame.label": "bg:#88aaaa #000000",
-    "dialog.body": "#aaaa44 bg:#aaaa44",
+    "dialog.body": "#000000 bg:#aaaa44",
     "dialog shadow": "bg:#88aaaa",
 }
 PROMT = HTML(
     '<style fg="#aaaa44">45`ers</style>'
     '<style fg="#072F68">@</style>'
-    '<style fg="#aaaa44">MarioBot </style>'
+    '<style fg="#aaaa44">Chandler </style>'
     '<style fg="#00aa00">> </style>'
 )

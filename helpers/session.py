@@ -38,7 +38,6 @@ def get_completer(none_commands, contacts=None, notes=None):
         "address": contacts_keys,
         "contact": contacts_keys,
         "note": None,
-        "tag": None
     }
     nested_dict["remove"] =  nested_dict["delete"]
     nested_dict["drop"] = nested_dict["delete"]
@@ -53,7 +52,6 @@ def get_completer(none_commands, contacts=None, notes=None):
             "description": notes_keys,
             "tags": notes_keys,
         },
-        "tag": None 
     }
     nested_dict["update"] = nested_dict["edit"]
     nested_dict["change"] = nested_dict["edit"]

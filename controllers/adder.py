@@ -147,6 +147,6 @@ def adder(args, contacts, notes_manager, counter):
             value = dialog.run()
             if not value:
                 return MESSAGES["canceled"]
-        args = contact.name.value, *parse_input(value, delimeter=",", strip=True)
+        args = contact.name.value, *parse_input(value, delimeter=",", strip=True, no_lower=True)
         return add_address(args, contacts)
     return MESSAGES["invalid_commad"]
