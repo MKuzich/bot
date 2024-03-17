@@ -21,8 +21,8 @@ def get_bottom_toolbar(contacts, notes_manager, weather_info=None):
     count_birthdays = contacts.get_count_birthdays_per_week()
 
     left_part = HTML(
-        f"<b>Contacts</b> {contacts_len} <b>Notes</b> {notes_len} "
-        f"<b>Birthdays</b> {count_birthdays}"
+        f" <b>Contacts</b> {contacts_len} <b>Notes</b> {notes_len} "
+        f"<b>Birthdays</b> {count_birthdays} "
     )
     if weather_info:
         temperature = weather_info["main"]["temp"]
@@ -30,12 +30,12 @@ def get_bottom_toolbar(contacts, notes_manager, weather_info=None):
             f' <b>Temperature: {temperature} </b>'
             f' <b>City: {weather_info["name"]}</b>'
             f' <b> {now.strftime("%A")} </b>'
-            f'{now.strftime("%d %B")} <b>Time</b> {now.strftime("%H:%M:%S")}'
+            f'{now.strftime("%d %B")} <b>Time</b> {now.strftime("%H:%M:%S")} '
         )
     else:
         right_part = HTML(
             f' <b> {now.strftime("%A")} </b>'
-            f'{now.strftime("%d %B")} <b>Time</b> {now.strftime("%H:%M:%S")}'
+            f'{now.strftime("%d %B")} <b>Time</b> {now.strftime("%H:%M:%S")} '
         )
     used_width = sum(
         [
