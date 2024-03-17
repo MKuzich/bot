@@ -16,7 +16,7 @@ from helpers.ui import (
 )
 
 @input_error
-def editor(args, contacts):
+def editor(args, contacts, notes_manager):
     if not len(args) == 2:
         return MESSAGES["edit_no_args"]
     attr, name = args
