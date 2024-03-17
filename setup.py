@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as f:
 
 setup(
     name='chandlerbot',
-    version='1',
+    version='1.1',
     description='You personal assistant',
     long_description=logn_desc,
     url='https://github.com/MKuzich/bot',
