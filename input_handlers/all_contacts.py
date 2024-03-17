@@ -15,7 +15,7 @@ def all_contacts(contacts):
         phones = ', '.join(str(phone) for phone in contact.phones) if contact.phones else '?'
         email = contact.email if contact.email else '?'
         address = contact.address if contact.address else '?'
-        birthday = contact.birthday if contact.birthday else '?'
+        birthday = contact.birthday if hasattr(contact, "birthday") else '?'
 
         data_for_table.append([name, phones, email, address, birthday])
 

@@ -4,3 +4,4 @@ pycountry==23.12.11
 Pygments==2.17.2
 tabulate==0.9.0
 wcwidth==0.2.13
+requests==2.31.0

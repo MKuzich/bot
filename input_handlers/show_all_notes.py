@@ -1,6 +1,6 @@
 from helpers.table_output import table_output
 from input_error import input_error
-from errors import NoContacts
+from errors import NoNotes
 
 @input_error
 def show_all_notes(notes):
@@ -15,7 +15,7 @@ def show_all_notes(notes):
         data_for_table.append([note_id, note_title, note_description, note_date, note_tag])
 
     if not data_for_table:
-        raise NoContacts
+        raise NoNotes
 
     #settings for tabulate
     headers = ['ID', 'Title', 'Description', 'Date', 'Tags']

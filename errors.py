@@ -13,6 +13,9 @@ class NameIsString(ValueError):
 class NoContacts(Exception):
     pass
 
+class NoNotes(Exception):
+    pass
+
 
 class NoBirthdays(Exception):
     """The date of birth search is limited to 365 days"""
