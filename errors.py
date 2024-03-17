@@ -79,3 +79,6 @@ class NoteIdNotInList(Exception):
 
 class NoteFormatError(Exception):
     """Note format not correct"""
+
+class AddressNotFound(Exception):
+    """Address not found"""
