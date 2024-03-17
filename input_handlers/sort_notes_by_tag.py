@@ -5,7 +5,7 @@ from errors import NoteSearchTagError, NoteEmptyError
 @input_error
 def sort_notes_by_tag(args, notes_manager):
     if args:
-        tags = [arg.strip().lower() for arg in ' '.join(args).split(',')]  
+        tags = args 
     else:
         raise NoteEmptyError
 
