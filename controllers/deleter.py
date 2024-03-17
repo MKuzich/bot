@@ -7,7 +7,8 @@ from input_handlers import (
     remove_contact,
     remove_email,
     remove_address,
-    remove_birthday
+    remove_birthday,
+    delete_note
 )
 from helpers.ui import (
     get_radio_dialog,
@@ -105,5 +106,24 @@ def deleter(args, contacts, notes_manager):
             return MESSAGES["canceled"]
         return remove_contact(contact.name.value, contacts)
 
-    if attr in [ "note", "tag"]:
-        pass
+    if attr == "note":
+        notes_list = [(str(note.note_id), note.title) for note in notes_manager.data]
+        if not notes_list:
+            return MESSAGES["notes_not_found"]
+        note_id = value
+        if not note_id:
+            dialog = get_radio_dialog(
+                "Select note", notes_list, "Please select note to edit"
+            )
+            note_id = dialog.run()
+            if not note_id:
+                return MESSAGES["canceled"]
+        note = notes_manager.get_note(int(note_id))
+        dialog = get_confirm_dialog(
+                    "Contact deletion", "Do you want to delete contact?"
+                )
+        confirmed = dialog.run()
+        if not confirmed:
+            return MESSAGES["canceled"]
+        args = (str(note_id),)
+        return delete_note(args, notes_manager)
