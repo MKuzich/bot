@@ -46,6 +46,10 @@ class Record:
     def remove_birthday(self, ):
         del self.birthday
 
+    def get_birthday(self):
+        if self.birthday:
+            return self.birthday.value.strftime("%d.%m.%Y")
+
     def __str__(self):
         email = self.email if self.email else None
         return f"Email {email} Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}, Address: {self.address}{', birthday: ' + self.birthday.value.strftime('%d %B, %Y') if hasattr(self, 'birthday') else ''}"

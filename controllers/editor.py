@@ -7,7 +7,8 @@ from input_handlers import (
     edit_phone,
     add_email,
     add_address,
-    add_phone
+    add_phone,
+    add_birthday
 )
 from helpers.inputs import parse_input
 from helpers.ui import (
@@ -81,6 +82,7 @@ def editor(args, contacts, notes_manager):
                 return MESSAGES["canceled"]
             args = name, *parse_input(new_phone)
         return add_phone(args, contacts)
+
     if attr == "email":
         if not value:
             value = contact.email.email if hasattr(contact.email, "email") else ""
@@ -94,11 +96,25 @@ def editor(args, contacts, notes_manager):
     if attr == "address":
         if not value:
             value = contact.address if hasattr(contact, "address") else ""
+        help_text = "Input address for contact, use format" +\
+                    " <street,building,city,postal code,coutnry> :"
         dialog = get_input_dialog(
-            "Edit address", "Edit user address:", str(value)
+            "Edit address", help_text, str(value)
         )
         edited_address = dialog.run()
         if not edited_address:
             return MESSAGES["canceled"]
-        args = name, *parse_input(edited_address, delimeter=",", strip=True)
+        args = name, *parse_input(edited_address, delimeter=",", strip=True, no_lower=True)
         return add_address(args, contacts)
+
+    if attr == "birthday":
+        if not value:
+            value = contact.get_birthday() if hasattr(contact, "birthday") else ""
+        dialog = get_input_dialog(
+            "Edit birthday", "Edit user birthday:", str(value)
+        )
+        edited_birthday = dialog.run()
+        if not edited_birthday:
+            return MESSAGES["canceled"]
+        args = name, *parse_input(edited_birthday)
+        return add_birthday(args, contacts)
