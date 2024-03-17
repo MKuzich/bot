@@ -93,3 +93,13 @@ def input_error(func):
             return get_red_html(f"An error occurred: {e}")
 
     return inner
+
+def load_error(func):
+    def inner(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except ConnectionError:
+            return None
+        except Exception:
+            return None
+    return inner
