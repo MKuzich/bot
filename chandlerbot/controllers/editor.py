@@ -145,7 +145,7 @@ def editor(args, contacts, notes_manager):
         if not value:
             value = contact.address if hasattr(contact, "address") else ""
         help_text = "Input address for contact, use format" +\
-                    " <street,building,city,postal code,coutnry> :"
+                    " <street, house number, city, postal code, coutnry> :"
         dialog = get_input_dialog(
             "Edit address", help_text, str(value)
         )
