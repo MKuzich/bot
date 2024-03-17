@@ -25,18 +25,19 @@ from helpers.ui import (
     get_bottom_toolbar,
 )
 from helpers.session import get_completer, open_session
+from helpers.weather import get_weather_info
 from helpers.inputs import parse_input
 from constants import NONE_COMMANDS, HELP_TEXT, HI_TEXT, PROMT, MESSAGES
 
 
 print = print_formatted_text
-
+weather_info = get_weather_info()
 
 def main():
     """Main bot functions"""
 
     def get_toolbar():
-        return get_bottom_toolbar(contacts, notes_manager)
+        return get_bottom_toolbar(contacts, notes_manager, weather_info)
 
     counter = 1
     contacts = AddressBook()
