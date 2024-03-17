@@ -4,37 +4,30 @@ from datetime import datetime
 from prompt_toolkit.styles import Style
 from prompt_toolkit.formatted_text import HTML
 from prompt_toolkit.shortcuts import radiolist_dialog, input_dialog, yes_no_dialog
-
-
 from prompt_toolkit.formatted_text import (
     fragment_list_width,
     merge_formatted_text,
     to_formatted_text,
 )
 from prompt_toolkit.application import get_app
+from constants import STYLES
 
-style = Style.from_dict(
-    {
-        "completion-menu.completion": "bg:#008888 #ffffff",
-        "completion-menu.completion.current": "bg:#00aaaa #000000",
-        "scrollbar.background": "bg:#88aaaa",
-        "scrollbar.button": "bg:#222222",
-        "bottom-toolbar": "#103356 bg:#ff0000",
-        "bottom-toolbar.text": "#aaaa44 bg:#aa4444",
-        "padding": "#103356 bg:#ff0000",
-    }
-)
-
+style = Style.from_dict(STYLES)
 
 def get_bottom_toolbar(contacts, notes_manager):
     now = datetime.now()
     contacts_len = len(contacts) if hasattr(contacts, "items") else 0
-    notes_len = len(notes_manager.data) 
+    notes_len = len(notes_manager.data)
     count_birthdays = contacts.get_count_birthdays_per_week()
 
-    left_part = HTML(f"<b>Contacts</b> {contacts_len} <b>Notes</b> {notes_len} <b>Birthdays</b> {count_birthdays}")
-    right_part = HTML(f' <b> {now.strftime("%A")} </b>'
-                      f'{now.strftime("%d %B")} <b>Time</b> {now.strftime("%H:%M:%S")}')
+    left_part = HTML(
+        f"<b>Contacts</b> {contacts_len} <b>Notes</b> {notes_len} "
+        f"<b>Birthdays</b> {count_birthdays}"
+    )
+    right_part = HTML(
+        f' <b> {now.strftime("%A")} </b>'
+        f'{now.strftime("%d %B")} <b>Time</b> {now.strftime("%H:%M:%S")}'
+    )
     used_width = sum(
         [
             fragment_list_width(to_formatted_text(left_part)),
@@ -58,12 +51,12 @@ def get_red_html(text):
 
 
 def get_radio_dialog(title, values, text):
-    radios = radiolist_dialog(values=values, title=title, text=text)
+    radios = radiolist_dialog(values=values, title=title, text=text , style=style,)
     return radios
 
 
-def get_input_dialog(title, text, default):
-    dialog = input_dialog(title=title, text=text, style=style, default=default)
+def get_input_dialog(title, text, default,):
+    dialog = input_dialog(title=title, text=text, style=style, default=default,)
     return dialog
 
 

@@ -22,3 +22,6 @@ from .show_all_notes import show_all_notes
 from .edit_phone import edit_phone
 from .add_phone import add_phone
 from .remove_phone import remove_phone
+from .remove_address import remove_address
+from .remove_birthday import remove_birthday
+from .remove_email import remove_email

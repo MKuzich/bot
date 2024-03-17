@@ -82,3 +82,10 @@ class NoteFormatError(Exception):
 
 class AddressNotFound(Exception):
     """Address not found"""
+
+class NoteIdAndTagNotEntered(Exception):
+    """No id and tag entered"""
+
+
+class TagNotEntered(Exception):
+    """No tag entered"""
