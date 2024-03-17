@@ -7,10 +7,6 @@ class NotesManager(UserList):
     def add_note(self, note):
         self.data.append(note)
 
-    def get_note(self, note_id):
-        for note in self.data:
-            if note_id == note.note_id:
-                return note
     def display_notes(self):
         for note in self.data:
             print("ID:", note.note_id)
@@ -29,26 +25,18 @@ class NotesManager(UserList):
                 found_notes.append(note)
         return found_notes
 
-    def sort_notes_by_tag(self, tag=None):
-        if tag is None:
-            tag = [] 
+    def sort_notes_by_tag(self, tags=None):
+        if tags is None:
+            tags = []
 
-        if tag:
-            filtered_notes = [
-                note for note in self.data
-                if any(tag.lower() in [t.lower() for t in note.tag] for tag in tag)
-            ]
-        else:
-            filtered_notes = self.data
-
-        sorted_notes = sorted(
-            filtered_notes,
-            key=lambda note: (
-                min([t.lower() for t in note.tag if t.lower() in [tag.lower() for tag in tag]], default=''),
-                note.date
-            ),
-            reverse=True
-        )
+        tag_set = set(tag.lower() for tag in tags)
+        
+        def tag_match_count(note):
+            note_tags = set(t.lower() for t in note.tag)
+            match_count = len(tag_set & note_tags) 
+            return (match_count, note.date)
+        
+        sorted_notes = sorted(self.data, key=tag_match_count, reverse=True)
 
         return sorted_notes
 
