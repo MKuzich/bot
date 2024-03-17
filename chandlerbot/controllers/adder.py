@@ -61,6 +61,7 @@ def adder(args, contacts, notes_manager, counter):
                 return MESSAGES["canceled"]
         args = name, value
         note = add_note(args, notes_manager, counter)
+        counter += 1
         return note
 
     if command == "tag":
