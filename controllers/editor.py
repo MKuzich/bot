@@ -17,13 +17,30 @@ from helpers.ui import (
 
 @input_error
 def editor(args, contacts, notes_manager):
-    if not len(args) == 2:
+    name, value = None, None
+    if len(args) == 1:
+        attr, *_ = args
+    elif len(args) == 2:
+        attr, name = args
+    elif len(args) == 3:
+        attr, name, value = args
+    else:
         return MESSAGES["edit_no_args"]
-    attr, name = args
-    if attr in ["email", "phone", "address"]:
-        contact = select_contact(args, contacts)
+
+    if attr in ["email", "phone", "address", "birthday"]:
+        if not name:
+            contacts_list = [(c, c) for c, _ in contacts.items()]
+            dialog = get_radio_dialog(
+                "Select contact", contacts_list, "Please select contact"
+            )
+            name = dialog.run()
+            if not name:
+                return MESSAGES["canceled"]
+        contact_args = "", name
+        contact = select_contact(contact_args, contacts)
         if isinstance(contact, HTML):
-            return(contact, name)
+            return contact
+
     if attr in ["note", "tag"]:
         pass
 
@@ -55,18 +72,19 @@ def editor(args, contacts, notes_manager):
             args = name, selected_phone, edited_phone
             return edit_phone(contacts, *args)
         else:
+            default = value if value else ""
             dialog = get_input_dialog(
-                "Add number", "Add telephone number", ""
+                "Add number", "Add telephone number", default
             )
             new_phone = dialog.run()
             if not new_phone:
                 return MESSAGES["canceled"]
             args = name, *parse_input(new_phone)
-            return add_phone(args, contacts)
-
+        return add_phone(args, contacts)
     if attr == "email":
-        cur_email = contact.email.email if hasattr(contact.email, "email") else ""
-        dialog = get_input_dialog("Edit email", "Edit user email", cur_email)
+        if not value:
+            value = contact.email.email if hasattr(contact.email, "email") else ""
+        dialog = get_input_dialog("Edit email", "Edit user email", value)
         edited_email = dialog.run()
         if not edited_email:
             return MESSAGES["canceled"]
@@ -74,8 +92,10 @@ def editor(args, contacts, notes_manager):
         return add_email(args, contacts)
 
     if attr == "address":
+        if not value:
+            value = contact.address if hasattr(contact, "address") else ""
         dialog = get_input_dialog(
-            "Edit address", "Edit user address:", str(contact.address)
+            "Edit address", "Edit user address:", str(value)
         )
         edited_address = dialog.run()
         if not edited_address:

@@ -22,10 +22,12 @@ def adder(args, contacts, notes_manager, counter):
     name, value = None, None
     if len(args) == 1:
         command, *_ = args
-    if len(args) == 2:
+    elif len(args) == 2:
         command, name = args
-    if len(args) == 3:
+    elif len(args) == 3:
         command, name, value = args
+    else:
+        return MESSAGES["not_correct_format"]
 
     if command == "contact":
         if not name:
@@ -76,56 +78,57 @@ def adder(args, contacts, notes_manager, counter):
                 return MESSAGES["canceled"]
         contact_args = "", name
         contact = select_contact(contact_args, contacts)
-        if command == "birthday":
-            if not value:
-                init_text = str(contact.birthday) if hasattr(contact, "birthday") else ""
-                dialog = get_input_dialog(
-                    "Input birthday",
-                    "Input birthday for contact, use format<DD:MM:YYYY> :",
-                    "",
-                )
-                value = dialog.run()
-                if not value:
-                    return MESSAGES["canceled"]
-            args = contact.name.value, *parse_input(value)
-            return add_birthday(args, contacts)
 
-        if command == "email":
+    if command == "birthday":
+        if not value:
+            init_text = str(contact.birthday) if hasattr(contact, "birthday") else ""
+            dialog = get_input_dialog(
+                "Input birthday",
+                "Input birthday for contact, use format<DD:MM:YYYY> :",
+                "",
+            )
+            value = dialog.run()
             if not value:
-                init_text = str(contact.email) if hasattr(contact, "email") else ""
-                dialog = get_input_dialog(
-                    "Input email",
-                    "Input email for contact:",
-                    init_text,
-                )
-                value = dialog.run()
-                if not value:
-                    return MESSAGES["canceled"]
-            args = contact.name.value, *parse_input(value)
-            return add_email(args, contacts)
+                return MESSAGES["canceled"]
+        args = contact.name.value, *parse_input(value)
+        return add_birthday(args, contacts)
 
-        if command == "phone":
+    if command == "email":
+        if not value:
+            init_text = str(contact.email) if hasattr(contact, "email") else ""
+            dialog = get_input_dialog(
+                "Input email",
+                "Input email for contact:",
+                init_text,
+            )
+            value = dialog.run()
             if not value:
-                dialog = get_input_dialog(
-                    "Input phone",
-                    "Input phone for contact:",
-                    "",
-                )
-                value = dialog.run()
-                if not value:
-                    return MESSAGES["canceled"]
-            args = contact.name.value, *parse_input(value)
-            return add_phone(args, contacts)
+                return MESSAGES["canceled"]
+        args = contact.name.value, *parse_input(value)
+        return add_email(args, contacts)
 
-        if command == "address":
+    if command == "phone":
+        if not value:
+            dialog = get_input_dialog(
+                "Input phone",
+                "Input phone for contact:",
+                "",
+            )
+            value = dialog.run()
             if not value:
-                help_text = "Input address for contact, use format" +\
-                      " <street, building, city, postal code, coutnry> :"
-                init_text = str(contact.address) if hasattr(contact, "address") else ""
-                dialog = get_input_dialog("Input address", help_text, init_text)
-                value = dialog.run()
-                if not value:
-                    return MESSAGES["canceled"]
-            args = contact.name.value, *parse_input(value, delimeter=",", strip=True)
-            return add_address(args, contacts)
+                return MESSAGES["canceled"]
+        args = contact.name.value, *parse_input(value)
+        return add_phone(args, contacts)
+
+    if command == "address":
+        if not value:
+            help_text = "Input address for contact, use format" +\
+                    " <street, building, city, postal code, coutnry> :"
+            init_text = str(contact.address) if hasattr(contact, "address") else ""
+            dialog = get_input_dialog("Input address", help_text, init_text)
+            value = dialog.run()
+            if not value:
+                return MESSAGES["canceled"]
+        args = contact.name.value, *parse_input(value, delimeter=",", strip=True)
+        return add_address(args, contacts)
     return MESSAGES["invalid_commad"]
