@@ -83,7 +83,7 @@ def input_error(func):
             return "Please enter note ID and minimum 1 tag."
         except TagNotEntered:
             return "Please enter minimum 1 tag."
-        except Exception as e:
-            return get_red_html(f"An error occurred: {e}")
+        #except Exception as e:
+        #    return get_red_html(f"An error occurred: {e}")
 
     return inner

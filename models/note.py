@@ -9,3 +9,9 @@ class Note:
         self.date = date if date else datetime.datetime.now()
         self.note_id = note_id
         self.tag = tag if tag else []
+
+    def get_tags(self,):
+        tags=""
+        for tag in self.tag:
+            tags +=f"{tag},"
+        return tags.rstrip(",")
