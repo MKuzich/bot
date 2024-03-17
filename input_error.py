@@ -19,6 +19,7 @@ from errors import (
     NoteIdNotCorrect,
     NoteIdNotInList,
     NoteFormatError,
+    AddressNotFound,
     NoteIdAndTagNotEntered,
     TagNotEntered,
 )
@@ -79,6 +80,8 @@ def input_error(func):
             return "Note ID not in list."
         except NoteFormatError:
             return "Note format not correct. Usage: add-note <Title> <Description>"
+        except AddressNotFound:
+            return "Address not found"
         except NoteIdAndTagNotEntered:
             return "Please enter note ID and minimum 1 tag."
         except TagNotEntered:
