@@ -7,6 +7,10 @@ class NotesManager(UserList):
     def add_note(self, note):
         self.data.append(note)
 
+    def get_note(self, note_id):
+        for note in self.data:
+            if note_id == note.note_id:
+                return note
     def display_notes(self):
         list_note = []
         for note in self.data:

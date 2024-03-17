@@ -15,8 +15,9 @@ def get_completer(none_commands, contacts=None, notes=None):
 
     if hasattr(contacts, "items"):
         contacts_keys = {c: None for c, _ in contacts.items()}
-    if hasattr(notes, "items"):
-        notes_keys = {n: None for n, _ in notes.items()}
+    if hasattr(notes, "data"):
+        notes_keys = {str(n.note_id): None for n in notes.data}
+
     nested_dict = dict(none_commands)
     nested_dict["add"] = {
         "email": contacts_keys,
@@ -47,7 +48,11 @@ def get_completer(none_commands, contacts=None, notes=None):
         "phone": contacts_keys,
         "birthday": contacts_keys,
         "address": contacts_keys,
-        "note": None,
+        "note": {
+            "title" : notes_keys,
+            "description": notes_keys,
+            "tags": notes_keys,
+        },
         "tag": None 
     }
     nested_dict["update"] = nested_dict["edit"]

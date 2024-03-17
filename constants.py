@@ -192,7 +192,6 @@ NONE_COMMANDS = {
     "bye": None,
     "quit": None,
     "all": None,
-    "add-note": None,
     "show-all-notes": None,
     "search-contact": None,
     "search-note": None,
@@ -219,20 +218,20 @@ MESSAGES = {
     ),
     "canceled": HTML('<strong><style fg="#00aa00">Ok. Canceled!</style></strong>'),
     "phone_not_set": HTML(
-        '<strong><style fg="#F87168">Error: No phones found</style></strong>'
+        '<strong><style fg="#F87168">Error: No phones found\n</style></strong>'
         '<strong><style fg="#00aa00">Usage: add phone* [contact] [phone] </style></strong>'
     ),
     "email_not_set": HTML(
-        '<strong><style fg="#F87168">Error: Email not found</style></strong>'
+        '<strong><style fg="#F87168">Error: Email not found\n</style></strong>'
         '<strong><style fg="#00aa00">Usage: add  email* [contact] [email] </style></strong>'
     ),
     "address_not_set": HTML(
-        '<strong><style fg="#F87168">Error: No address found</style></strong>'
+        '<strong><style fg="#F87168">Error: No address found\n</style></strong>'
         '<strong><style fg="#00aa00">Usage: add address* [contact]'
         '[street* buliding* city* postal code country] </style></strong>'
     ),
     "birthday_not_set": HTML(
-        '<strong><style fg="#F87168">Error: Birthday not found</style></strong>'
+        '<strong><style fg="#F87168">Error: Birthday not found\n</style></strong>'
         '<strong><style fg="#00aa00">Usage: add birthday* [contact] [birthday] </style></strong>'
     ),
     "not_correct_format": HTML(
@@ -246,6 +245,11 @@ MESSAGES = {
     "dev": HTML(
         '<strong><style fg="#F87168">Error: in development\n</style></strong>'
         'Type <style fg="#00aa00"><strong>help</strong></style> to show usage of commads.'
+    ),
+    "notes_not_found": HTML(
+        '<strong><style fg="#F87168">Error: Any note not found\n</style></strong>'
+        '<strong><style fg="#00aa00">Usage: add  note* [title]'
+        '[description] [tags]</style></strong>'
     ),
 }
 STYLES = {
