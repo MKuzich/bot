@@ -206,13 +206,13 @@ HI_TEXT = HTML(
     + "<ansigreen>Add contacts</ansigreen> \n"
     + "<ansired>Delete contacts</ansired>"
 )
-PROMT = HTML('<style fg="#00aa00">>>> </style>')
+PROMT_ = HTML('<style fg="#00aa00">>>> </style>')
 
 
 MESSAGES = {
     "edit_no_args": HTML(
         '<strong><style fg="#F87168">Error: Given format not supported\n</style></strong>'
-        '<strong><style fg="#00aa00">Usage: edit {what} {contact\\note} </style></strong>'
+        '<strong><style fg="#00aa00">Usage: edit [what]* [contact\\note] </style></strong>'
     ),
     "not_found": HTML(
         '<style fg="#DC620C">I`m sorry, but I cannot find this..</style>'
@@ -220,23 +220,20 @@ MESSAGES = {
     "canceled": HTML('<strong><style fg="#00aa00">Ok. Canceled!</style></strong>'),
     "phone_not_set": HTML(
         '<strong><style fg="#F87168">Error: No phones found</style></strong>'
-        '<strong><style fg="#00aa00">Usage: add phone {contact} {phone} </style></strong>'
+        '<strong><style fg="#00aa00">Usage: add phone* [contact] [phone] </style></strong>'
     ),
     "email_not_set": HTML(
         '<strong><style fg="#F87168">Error: Email not found</style></strong>'
-        '<strong><style fg="#00aa00">Usage: add  email {contact} {email} </style></strong>'
+        '<strong><style fg="#00aa00">Usage: add  email* [contact] [email] </style></strong>'
     ),
     "address_not_set": HTML(
         '<strong><style fg="#F87168">Error: No address found</style></strong>'
-        '<strong><style fg="#00aa00">Usage: add address {contact} {address} </style></strong>'
+        '<strong><style fg="#00aa00">Usage: add address* [contact]'
+        '[street* buliding* city* postal code country] </style></strong>'
     ),
     "birthday_not_set": HTML(
         '<strong><style fg="#F87168">Error: Birthday not found</style></strong>'
-        '<strong><style fg="#00aa00">Usage: add birthday {contact} {birthday} </style></strong>'
-    ),
-    "not_correct": HTML(
-        '<strong><style fg="#F87168">Error: No correct input\n</style></strong>'
-        '<strong><style fg="#00aa00">Usage: delete-phone {contact}</style></strong>'
+        '<strong><style fg="#00aa00">Usage: add birthday* [contact] [birthday] </style></strong>'
     ),
     "not_correct_format": HTML(
         '<strong><style fg="#F87168">Error: No correct input\n</style></strong>'
@@ -264,8 +261,9 @@ STYLES = {
     "dialog.body": "#aaaa44 bg:#aaaa44",
     "dialog shadow": "bg:#88aaaa",
 }
-OTHER_PROMT = HTML(
-    '<style fg="#22272B">45`ers</style>'
+PROMT = HTML(
+    '<style fg="#aaaa44">45`ers</style>'
     '<style fg="#072F68">@</style>'
-    '<style fg="#072F68">Mario</style>'
+    '<style fg="#aaaa44">MarioBot </style>'
+    '<style fg="#00aa00">> </style>'
 )
