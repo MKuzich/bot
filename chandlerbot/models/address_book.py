@@ -120,7 +120,7 @@ class AddressBook(UserDict):
         target_date = today + timedelta(days=days)
         birthdays = defaultdict(list)
 
-        users_list = list(self.data.values())
+        users_list = [user for user in self.data.values() if hasattr(user, 'birthday')]
         users = sorted(users_list, key=self.sort_by_date)
 
         for user in users:
