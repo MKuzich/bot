@@ -1,5 +1,6 @@
 from chandlerbot.input_error import input_error
 from chandlerbot.errors import NotValidPhoneNumber, NameIsString
+from chandlerbot.models.phone import Phone
 
 
 @input_error
@@ -8,7 +9,7 @@ def add_phone(args, contacts):
     name, phone = args
     if name not in contacts:
         raise KeyError
-    if not phone.isdigit() or len(phone) != 10:
+    if not Phone(phone):
         raise NotValidPhoneNumber
     if not name.isalpha():
         raise NameIsString
