@@ -89,46 +89,30 @@ class AddressBook(UserDict):
         today = datetime.now().date()
         target_date = today + timedelta(days=7)
         count = 0
-        
+
         for user in self.data.values():
             if hasattr(user, 'birthday'):
                 # Переконуємося, що працюємо з датою, а не з datetime
-                birthday_date = user.birthday.value.date() if isinstance(user.birthday.value, datetime) else user.birthday.value
+                birthday_date = (user.birthday.value.date()
+                                 if isinstance(user.birthday.value, datetime)
+                                 else user.birthday.value)
                 birthday_this_year = birthday_date.replace(year=today.year)
-                
+
                 if birthday_this_year < today:
                     birthday_this_year = birthday_this_year.replace(year=today.year + 1)
-                
+
                 if today <= birthday_this_year <= target_date:
                     count += 1
 
         return count
 
-    def get_birthdays_per_week(self):
+    def sort_by_date(self, user):
         today = datetime.now().date()
-        birthdays = defaultdict(list)
-        users = [{"name": user.name.value, "birthday": user.birthday.value} for user in self.data.values() if hasattr(user, 'birthday')]
-        def sort_by_date(user):
-            return user['birthday'].date()
-        users.sort(key=sort_by_date)
-        
-        for user in users:
-            name = user['name']
-            birthday = user['birthday'].date()
-            birthday_this_year = birthday.replace(year=today.year)
-
-            if birthday_this_year < today:
-                birthday_this_year = birthday_this_year.replace(year=today.year + 1)
-            
-            delta_days = (birthday_this_year - today).days
-
-            if delta_days < 300:
-                if birthday_this_year.weekday() > 4: 
-                    if today.weekday() != 0 and today.weekday() < 5:
-                        birthdays['Monday'].append(name)
-                else:
-                    birthdays[birthday_this_year.strftime('%A')].append(name)
-        return birthdays
+        birthday_date = user.birthday.value.date()
+        birthday = birthday_date.replace(year=today.year)
+        if birthday < today:
+            birthday = birthday_date.replace(year=today.year + 1)
+        return birthday
 
     def get_upcoming_birthdays(self, days):
         today = datetime.now().date()
@@ -136,7 +120,10 @@ class AddressBook(UserDict):
         target_date = today + timedelta(days=days)
         birthdays = defaultdict(list)
 
-        for user in self.data.values():
+        users_list = [user for user in self.data.values() if hasattr(user, 'birthday')]
+        users = sorted(users_list, key=self.sort_by_date)
+
+        for user in users:
             if hasattr(user, 'birthday'):
                 name = user.name.value
                 phones = '; '.join(p.value for p in user.phones)
