@@ -21,7 +21,7 @@ def search_note(args, notes_manager):
             note_id = note.note_id or "?"
             note_title = note.title or "?"
             note_description = note.description or "?"
-            note_date = note.date.strftime("%d.%m.%Y")
+            note_date = note.date.strftime("%d %B, %Y")
             note_tag = note.tag or "?"
 
             data_for_table.append([note_id, note_title, note_description, note_tag, note_date])

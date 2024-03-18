@@ -12,12 +12,11 @@ def show_note(args, notes_manager):
     note_id = int(args[0])
     data_for_table = []
 
-    #
     for note in notes_manager.data:
         if note_id == note.note_id:
             note_title = note.title or "?"
             note_description = note.description or "?"
-            note_date = note.date.strftime("%d.%m.%Y")
+            note_date = note.date.strftime("%d %B, %Y")
             note_tag = note.tag or "?"
             data_for_table.append([note_id, note_title, note_description, note_date, note_tag])
 

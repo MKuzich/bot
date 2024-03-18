@@ -1,6 +1,7 @@
 from chandlerbot.helpers.table_output import table_output
 from chandlerbot.input_error import input_error
 from chandlerbot.errors import NoContacts
+from datetime import datetime
 
 @input_error
 def all_contacts(contacts):
@@ -15,7 +16,8 @@ def all_contacts(contacts):
         phones = ', '.join(str(phone) for phone in contact.phones) if contact.phones else '?'
         email = contact.email if contact.email else '?'
         address = contact.address if contact.address else '?'
-        birthday = contact.birthday if hasattr(contact, "birthday") else '?'
+        birthday = (contact.birthday.value.strftime('%d %B, %Y')
+                    if hasattr(contact, "birthday") else '?')
 
         data_for_table.append([name, phones, email, address, birthday])
 
