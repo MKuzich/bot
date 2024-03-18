@@ -28,26 +28,20 @@ class NotesManager(UserList):
                 found_notes.append(note)
         return found_notes
 
-    def sort_notes_by_tag(self, tag=None):
-        if tag is None:
-            tag = [] 
+    def sort_notes_by_tag(self, tags=None):
+        if tags is None:
+            tags = []
 
-        if tag:
-            filtered_notes = [
-                note for note in self.data
-                if any(tag.lower() in [t.lower() for t in note.tag] for tag in tag)
-            ]
-        else:
-            filtered_notes = self.data
+        tags = [tag.lower() for tag in tags]
 
-        sorted_notes = sorted(
-            filtered_notes,
-            key=lambda note: (
-                min([t.lower() for t in note.tag if t.lower() in [tag.lower() for tag in tag]], default=''),
-                note.date
-            ),
-            reverse=True
-        )
+        def sort_key(note):
+            note_tags_lower = [t.lower() for t in note.tag]
+            matching_tags_count = sum(tag in note_tags_lower for tag in tags)
+            return (matching_tags_count, note.date)
+
+        filtered_notes = [note for note in self.data if any(tag in [t.lower() for t in note.tag] for tag in tags)]
+
+        sorted_notes = sorted(filtered_notes, key=sort_key, reverse=True)
 
         return sorted_notes
 
